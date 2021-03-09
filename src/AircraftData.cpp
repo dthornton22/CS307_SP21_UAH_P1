@@ -22,4 +22,3 @@ void Aircraft::readData(string infile)
 {
 
 }
-

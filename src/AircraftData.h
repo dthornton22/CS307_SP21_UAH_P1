@@ -21,7 +21,6 @@ class Aircraft
 		int climbSpeed;						// 
 		int wingspan;						// 
 		int fuselageLength;					// 
-		
 
 	public:
 		Aircraft(); 						// Default constructor

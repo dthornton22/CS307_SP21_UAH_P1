@@ -6,6 +6,11 @@
 // Due Date: 03/14/2021
 // ****************************************
 
+#include "AircraftData.h"
+#include "CityData.h"
+#include "CityDataParser.h"
+#include "FlightData.h"
+#include "FlightDataParser.h"
 #include "Simulation.h"
 #include <iostream>
 

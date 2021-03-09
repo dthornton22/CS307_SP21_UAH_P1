@@ -28,4 +28,3 @@ int City::calcDistance(int flightnum)
 
 	return 0;
 }
-
