@@ -14,31 +14,31 @@ using namespace std;
 class Flight
 {
 	private:
-		int flightNumber;					// 
-		int departTime;						// 
-		string airline;						// 
-		string aircraftType;				// 
-		string departCity;					// 
-		string arriveCity;					// 
+		int flightNumber{0};				// 
+		int departTime{0};					// 
+		string airline{"empty"};			// 
+		string aircraftType{"empty"};		// 
+		string departCity{"empty"};			// 
+		string arriveCity{"empty"};			// 
 
 	public:
 		Flight(); 							// Default constructor
 		~Flight(); 							// Destructor
-		void readData(string infile);		//
+		void readData(string infile);		// 
 
-		void setFlightNumber();				//
-		void setDepartTime();				//
-		void setAirline();					//
-		void setAircraftType();				//
-		void setDepartCity();				//
-		void setArriveCity();				//
+		void setFlightNumber(int param);	// 
+		void setDepartTime(int param);		// 
+		void setAirline(string param);		// 
+		void setAircraftType(string param);	// 
+		void setDepartCity(string param);	// 
+		void setArriveCity(string param);	// 
 
-		int getFlightNumber();				//
-		int getDepartTime();				//
-		string getAirline();				//
-		string getAircraftType();			//
-		string getDepartCity();				//
-		string getArriveCity();				//
+		int getFlightNumber();				// 
+		int getDepartTime();				// 
+		string getAirline();				// 
+		string getAircraftType();			// 
+		string getDepartCity();				// 
+		string getArriveCity();				// 
 };
 
 #endif

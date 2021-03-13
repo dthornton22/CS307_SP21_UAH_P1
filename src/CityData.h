@@ -14,26 +14,26 @@ using namespace std;
 class City
 {
 	private:
-		string name;						// 
-		string state;						// 
-		float latitude;						// 
-		float longitude;					// 
+		string name{"empty"};				// 
+		string state{"empty"};				// 
+		float latitude{0};					// 
+		float longitude{0};					// 
 
 	public:
 		City(); 							// Default constructor
 		~City(); 							// Destructor
-		void readData(string infile);		//
-		int calcDistance(int flightnum);	//
+		void readData(string infile);		// 
+		int calcDistance(int flightnum);	// 
 
-		void setName();						// 
-		void setState();					// 
-		void setLatitude();					// 
-		void setLongitude();				// 
+		void setName(string param);			// 
+		void setState(string param);		// 
+		void setLatitude(float param);		// 
+		void setLongitude(float param);		// 
 
-		string getname();					// 
-		string getstate();					// 
-		float getlatitude();				// 
-		float getlongitude();				// 
+		string getName();					// 
+		string getState();					// 
+		float getLatitude();				// 
+		float getLongitude();				// 
 };
 
 #endif

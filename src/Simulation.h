@@ -15,7 +15,7 @@ class Simulation
 {
 	private:
 		int clockMult{0};				// Speed of the program
-		string inFile{"ERROR"};			// User provided input file
+		string inFile{"empty"};			// User provided input file
 
 	public:
 		Simulation(); 					// Default constructor

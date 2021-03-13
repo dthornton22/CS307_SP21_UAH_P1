@@ -28,3 +28,43 @@ int City::calcDistance(int flightnum)
 
 	return 0;
 }
+
+void City::setName(string param)
+{
+	this->name = param;
+}
+
+void City::setState(string param)
+{
+	this->state = param;
+}
+
+void City::setLatitude(float param)
+{
+	this->latitude = param;
+}
+
+void City::setLongitude(float param)
+{
+	this->longitude = param;
+}
+
+string City::getName()
+{
+	return this->name;
+}
+
+string City::getState()
+{
+	return this->state;
+}
+
+float City::getLatitude()
+{
+	return this->latitude;
+}
+
+float City::getLongitude()
+{
+	return this->longitude;
+}
