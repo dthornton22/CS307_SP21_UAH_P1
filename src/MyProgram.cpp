@@ -6,18 +6,20 @@
 // Due Date: 03/14/2021
 // ****************************************
 
-#include "AircraftData.h"
-#include "CityData.h"
-#include "CityDataParser.h"
-#include "FlightData.h"
-#include "FlightDataParser.h"
 #include "Simulation.h"
 #include <iostream>
 
 int main(int argc, char* argv[])
 {
-    cout << "Hello world\n\n";
-	// Instantiate Simulation object
+    cout << "Starting program!!!\n\n";
+    Simulation mySim; 	// Instantiate Simulation object
+
+    // Test values
+    mySim.setClockMult(1);
+    mySim.setInFile("test");
+    cout << "Clock mult: " << mySim.getClockMult() << endl;
+    cout << "Infile: " << mySim.getInFile() << endl;
+
     // Call Simulation::initializeSimulation
     // Call Simulation::runSimulation
 }

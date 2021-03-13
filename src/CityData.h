@@ -24,6 +24,16 @@ class City
 		~City(); 							// Destructor
 		void readData(string infile);		//
 		int calcDistance(int flightnum);	//
+
+		void setName();						// 
+		void setState();					// 
+		void setLatitude();					// 
+		void setLongitude();				// 
+
+		string getname();					// 
+		string getstate();					// 
+		float getlatitude();				// 
+		float getlongitude();				// 
 };
 
 #endif

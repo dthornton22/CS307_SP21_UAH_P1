@@ -14,14 +14,20 @@ using namespace std;
 class Simulation
 {
 	private:
-		int clockMult;		// Speed of the program
-		string infile;		// User provided input file
+		int clockMult{0};				// Speed of the program
+		string inFile{"ERROR"};			// User provided input file
 
 	public:
-		Simulation(); 		// Default constructor
-		~Simulation(); 		// Destructor
-		int getFlightETA();	// 
-		void printReport();	// Prints report to terminal and output file
+		Simulation(); 					// Default constructor
+		~Simulation(); 					// Destructor
+		int getFlightETA();				// Todo: what does this return
+		void printReport();				// Prints report to terminal and output file
+		
+		void setClockMult(int param);	// Sets the clockMult variable
+		void setInFile(string param);	// Sets the inFile
+		
+		int getClockMult();				// Gets the clockMult variable
+		string getInFile();				// Gets the inFile variable
 };
 
 #endif

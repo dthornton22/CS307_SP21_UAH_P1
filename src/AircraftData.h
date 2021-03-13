@@ -25,7 +25,23 @@ class Aircraft
 	public:
 		Aircraft(); 						// Default constructor
 		~Aircraft(); 						// Destructor
-		void readData(string infile);		//					
+		void readData(string infile);		//		
+
+		void setMake();						// 
+		void setModel();					// 
+		void setCruiseSpeed();				// 
+		void setCruiseAltitude();			// 
+		void setClimbSpeed();				// 
+		void setWingspan();					// 
+		void setFuselageLength();			// 
+
+		string getmake();					// 
+		string getmodel();					// 
+		int getcruiseSpeed();				// 
+		int getcruiseAltitude();			// 
+		int getclimbSpeed();				// 
+		int getwingspan();					// 
+		int getfuselageLength();			// 
 };
 
 #endif

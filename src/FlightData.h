@@ -25,6 +25,20 @@ class Flight
 		Flight(); 							// Default constructor
 		~Flight(); 							// Destructor
 		void readData(string infile);		//
+
+		void setFlightNumber();				//
+		void setDepartTime();				//
+		void setAirline();					//
+		void setAircraftType();				//
+		void setDepartCity();				//
+		void setArriveCity();				//
+
+		int getFlightNumber();				//
+		int getDepartTime();				//
+		string getAirline();				//
+		string getAircraftType();			//
+		string getDepartCity();				//
+		string getArriveCity();				//
 };
 
 #endif
