@@ -14,13 +14,13 @@ using namespace std;
 class Aircraft
 {
 	private:
-		string make{"empty"};				// 
-		string model{"empty"};				// 
-		int cruiseSpeed{0};					// 
-		int cruiseAltitude{0};				// 
-		int climbSpeed{0};					// 
-		int wingspan{0};					// 
-		int fuselageLength{0};				// 
+		string make{"empty"};
+		string model{"empty"};
+		int cruiseSpeed{0};
+		int cruiseAltitude{0};
+		int climbSpeed{0};
+		int wingspan{0};
+		int fuselageLength{0};
 
 	public:
 		Aircraft(); 						// Default constructor
@@ -28,22 +28,22 @@ class Aircraft
 		void readData(string infile);		// 	
 
 		// Set functions
-		void setMake(string param);			// 
-		void setModel(string param);		// 
-		void setCruiseSpeed(int param);		// 
-		void setCruiseAltitude(int param);	// 
-		void setClimbSpeed(int param);		// 
-		void setWingspan(int param);		// 
-		void setFuselageLength(int param);	// 
+		void setMake(string param);
+		void setModel(string param);
+		void setCruiseSpeed(int param);
+		void setCruiseAltitude(int param);
+		void setClimbSpeed(int param);
+		void setWingspan(int param);
+		void setFuselageLength(int param);
 
 		// Get functions
-		string getMake();					// 
-		string getModel();					// 
-		int getCruiseSpeed();				// 
-		int getCruiseAltitude();			// 
-		int getClimbSpeed();				// 
-		int getWingspan();					// 
-		int getFuselageLength();			// 
+		string getMake();
+		string getModel();
+		int getCruiseSpeed();
+		int getCruiseAltitude();
+		int getClimbSpeed();
+		int getWingspan();
+		int getFuselageLength();
 };
 
 #endif

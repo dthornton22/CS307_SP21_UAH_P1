@@ -14,10 +14,10 @@ using namespace std;
 class City
 {
 	private:
-		string name{"empty"};				// 
-		string state{"empty"};				// 
-		float latitude{0};					// 
-		float longitude{0};					// 
+		string name{"empty"};
+		string state{"empty"};
+		float latitude{0};
+		float longitude{0};
 
 	public:
 		City(); 							// Default constructor
@@ -26,16 +26,16 @@ class City
 		int calcDistance(int flightnum);	// 
 
 		// Set functions
-		void setName(string param);			// 
-		void setState(string param);		// 
-		void setLatitude(float param);		// 
-		void setLongitude(float param);		// 
+		void setName(string param);
+		void setState(string param);
+		void setLatitude(float param);
+		void setLongitude(float param);
 
 		// Get functions
-		string getName();					// 
-		string getState();					// 
-		float getLatitude();				// 
-		float getLongitude();				// 
+		string getName();
+		string getState();
+		float getLatitude();
+		float getLongitude();
 };
 
 #endif

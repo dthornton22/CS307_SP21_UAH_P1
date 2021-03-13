@@ -14,12 +14,12 @@ using namespace std;
 class Flight
 {
 	private:
-		int flightNumber{0};				// 
-		int departTime{0};					// 
-		string airline{"empty"};			// 
-		string aircraftType{"empty"};		// 
-		string departCity{"empty"};			// 
-		string arriveCity{"empty"};			// 
+		int flightNumber{0};
+		int departTime{0};
+		string airline{"empty"};
+		string aircraftType{"empty"};
+		string departCity{"empty"};
+		string arriveCity{"empty"};
 
 	public:
 		Flight(); 							// Default constructor
@@ -27,20 +27,20 @@ class Flight
 		void readData(string infile);		// 
 
 		// Set functions
-		void setFlightNumber(int param);	// 
-		void setDepartTime(int param);		// 
-		void setAirline(string param);		// 
-		void setAircraftType(string param);	// 
-		void setDepartCity(string param);	// 
-		void setArriveCity(string param);	// 
+		void setFlightNumber(int param);
+		void setDepartTime(int param);
+		void setAirline(string param);
+		void setAircraftType(string param);
+		void setDepartCity(string param);
+		void setArriveCity(string param);
 
 		// Get functions
-		int getFlightNumber();				// 
-		int getDepartTime();				// 
-		string getAirline();				// 
-		string getAircraftType();			// 
-		string getDepartCity();				// 
-		string getArriveCity();				// 
+		int getFlightNumber();
+		int getDepartTime();
+		string getAirline();
+		string getAircraftType();
+		string getDepartCity();
+		string getArriveCity();
 };
 
 #endif

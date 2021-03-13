@@ -14,8 +14,8 @@ using namespace std;
 class Simulation
 {
 	private:
-		int clockMult{0};				// Speed of the program
-		string inFile{"empty"};			// User provided input file
+		int clockMult{0};
+		string inFile{"empty"};
 
 	public:
 		Simulation(); 					// Default constructor
@@ -26,12 +26,12 @@ class Simulation
 		void initializeSimulation();	// Set up the simulation
 
 		// Set functions
-		void setClockMult(int param);	// Sets the clockMult variable
-		void setInFile(string param);	// Sets the inFile
+		void setClockMult(int param);
+		void setInFile(string param);
 
 		// Get functions
-		int getClockMult();				// Gets the clockMult variable
-		string getInFile();				// Gets the inFile variable
+		int getClockMult();
+		string getInFile();
 };
 
 #endif
