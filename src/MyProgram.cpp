@@ -11,15 +11,8 @@
 
 int main(int argc, char* argv[])
 {
-    cout << "Starting program!!!\n\n";
-    Simulation mySim; 	// Instantiate Simulation object
-
-    // Test values
-    mySim.setClockMult(1);
-    mySim.setInFile("test");
-    cout << "Clock mult: " << mySim.getClockMult() << endl;
-    cout << "Infile: " << mySim.getInFile() << endl;
-
-    // Call Simulation::initializeSimulation
-    // Call Simulation::runSimulation
+    cout << "Starting program!!!" << endl;
+    Simulation mySim; 	            // Instantiate Simulation object
+    mySim.initializeSimulation();   // Call Simulation::initializeSimulation
+    mySim.runSimulation();          // Call Simulation::runSimulation
 }

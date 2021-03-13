@@ -28,6 +28,16 @@ void Simulation::printReport()
 
 }
 
+void Simulation::runSimulation()
+{
+
+}
+
+void Simulation::initializeSimulation()
+{
+
+}
+
 void Simulation::setClockMult(int param)
 {
 	this->clockMult = param;

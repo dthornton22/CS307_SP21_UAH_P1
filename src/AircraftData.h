@@ -27,6 +27,7 @@ class Aircraft
 		~Aircraft(); 						// Destructor
 		void readData(string infile);		// 	
 
+		// Set functions
 		void setMake(string param);			// 
 		void setModel(string param);		// 
 		void setCruiseSpeed(int param);		// 
@@ -35,6 +36,7 @@ class Aircraft
 		void setWingspan(int param);		// 
 		void setFuselageLength(int param);	// 
 
+		// Get functions
 		string getMake();					// 
 		string getModel();					// 
 		int getCruiseSpeed();				// 

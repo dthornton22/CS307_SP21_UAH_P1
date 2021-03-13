@@ -26,6 +26,7 @@ class Flight
 		~Flight(); 							// Destructor
 		void readData(string infile);		// 
 
+		// Set functions
 		void setFlightNumber(int param);	// 
 		void setDepartTime(int param);		// 
 		void setAirline(string param);		// 
@@ -33,6 +34,7 @@ class Flight
 		void setDepartCity(string param);	// 
 		void setArriveCity(string param);	// 
 
+		// Get functions
 		int getFlightNumber();				// 
 		int getDepartTime();				// 
 		string getAirline();				// 

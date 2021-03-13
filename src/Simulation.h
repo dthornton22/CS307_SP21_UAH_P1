@@ -22,10 +22,14 @@ class Simulation
 		~Simulation(); 					// Destructor
 		int getFlightETA();				// Todo: what does this return
 		void printReport();				// Prints report to terminal and output file
-		
+		void runSimulation();			// Runs the simulation
+		void initializeSimulation();	// Set up the simulation
+
+		// Set functions
 		void setClockMult(int param);	// Sets the clockMult variable
 		void setInFile(string param);	// Sets the inFile
-		
+
+		// Get functions
 		int getClockMult();				// Gets the clockMult variable
 		string getInFile();				// Gets the inFile variable
 };

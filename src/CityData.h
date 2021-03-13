@@ -25,11 +25,13 @@ class City
 		void readData(string infile);		// 
 		int calcDistance(int flightnum);	// 
 
+		// Set functions
 		void setName(string param);			// 
 		void setState(string param);		// 
 		void setLatitude(float param);		// 
 		void setLongitude(float param);		// 
 
+		// Get functions
 		string getName();					// 
 		string getState();					// 
 		float getLatitude();				// 
