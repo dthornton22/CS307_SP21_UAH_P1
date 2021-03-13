@@ -5,7 +5,6 @@
 // Course Section: CS-307, SP 2021
 // Due Date: 03/14/2021
 // ****************************************
-
 #include "FlightData.h"
 
 Flight::Flight()

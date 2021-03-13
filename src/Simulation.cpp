@@ -19,7 +19,6 @@ Simulation::~Simulation()
 
 int Simulation::getFlightETA()
 {
-
 	return 0;
 }
 
