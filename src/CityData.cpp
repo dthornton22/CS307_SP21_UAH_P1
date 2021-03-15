@@ -6,6 +6,7 @@
 // Due Date: 03/14/2021
 // ****************************************
 #include "CityData.h"
+#include "CityDataParser.h"
 
 City::City()
 {
@@ -28,42 +29,46 @@ int City::calcDistance(int flightnum)
 	return 0;
 }
 
-void City::setName(string param)
+void City::setName(char* param)
 {
 	this->name = param;
 }
 
-void City::setState(string param)
+void City::setState(char* param)
 {
 	this->state = param;
 }
 
-void City::setLatitude(float param)
+void City::setLatitude(double param)
 {
 	this->latitude = param;
 }
 
-void City::setLongitude(float param)
+void City::setLongitude(double param)
 {
 	this->longitude = param;
 }
 
-string City::getName()
+char* City::getName()
 {
 	return this->name;
 }
 
-string City::getState()
+char* City::getState()
 {
 	return this->state;
 }
 
-float City::getLatitude()
+char* City::getSymbol()
+{
+	return this->symbol;
+}
+double City::getLatitude()
 {
 	return this->latitude;
 }
 
-float City::getLongitude()
+double City::getLongitude()
 {
 	return this->longitude;
 }

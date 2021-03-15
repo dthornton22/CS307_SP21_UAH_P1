@@ -6,6 +6,7 @@
 // Due Date: 03/14/2021
 // ****************************************
 #include "FlightData.h"
+#include "FlightDataParser.h"
 
 Flight::Flight()
 {

@@ -6,8 +6,8 @@
 // Due Date: 03/14/2021
 // ****************************************
 #include <string>
-#ifndef SIMULATION_H
-#define SIMULATION_H
+#ifndef FLIGHTDATA_H
+#define FLIGHTDATA_H
 
 using namespace std;
 
