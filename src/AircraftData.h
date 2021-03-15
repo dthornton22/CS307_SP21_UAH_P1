@@ -14,8 +14,8 @@ using namespace std;
 class Aircraft
 {
 	private:
-		string make{"empty"};
-		string model{"empty"};
+		char* make{};
+		char* model{};
 		int cruiseSpeed{0};
 		int cruiseAltitude{0};
 		int climbSpeed{0};
@@ -25,11 +25,11 @@ class Aircraft
 	public:
 		Aircraft(); 						// Default constructor
 		~Aircraft(); 						// Destructor
-		void readData(string infile);		// 	
+		void readData();					// 	
 
 		// Set functions
-		void setMake(string param);
-		void setModel(string param);
+		void setMake(char* param);
+		void setModel(char* param);
 		void setCruiseSpeed(int param);
 		void setCruiseAltitude(int param);
 		void setClimbSpeed(int param);
@@ -37,8 +37,8 @@ class Aircraft
 		void setFuselageLength(int param);
 
 		// Get functions
-		string getMake();
-		string getModel();
+		char* getMake();
+		char* getModel();
 		int getCruiseSpeed();
 		int getCruiseAltitude();
 		int getClimbSpeed();

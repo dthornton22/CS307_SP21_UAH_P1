@@ -29,12 +29,16 @@ void Simulation::printReport()
 
 void Simulation::runSimulation()
 {
-
+	// int timer = this->clockMult;
 }
 
 void Simulation::initializeSimulation()
 {
-
+	string temp = "";
+	cout << "Please enter the name of your input (.txt) file: ";
+	cin >> temp;
+	cout << "Parsing data from " << temp << "..." << endl;
+	char* infile = &temp[0];
 }
 
 void Simulation::setClockMult(int param)

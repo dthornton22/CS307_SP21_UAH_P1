@@ -10,7 +10,7 @@
 
 Flight::Flight()
 {
-	
+	Flight::readData();
 }
 
 Flight::~Flight()
@@ -18,8 +18,12 @@ Flight::~Flight()
 	
 }
 
-void Flight::readData(string infile)
+void Flight::readData()
 {
+	FlightDataParser* ParseFlight = new FlightDataParser();
+	ParseFlight->InitFlightData("C:/Users/David Thornton/source/repos/CS307Project1/src/Data/AirlineFlightData01.xml");
+	vector<Flight> FlightList;
+	printf("Number of flights: %d\n", ParseFlight->getFlightCount()); // test
 
 }
 
@@ -33,22 +37,22 @@ void Flight::setDepartTime(int param)
 	this->departTime = param;
 }
 
-void Flight::setAirline(string param)
+void Flight::setAirline(char* param)
 {
 	this->airline = param;
 }
 
-void Flight::setAircraftType(string param)
+void Flight::setAircraftType(char* param)
 {
 	this->aircraftType = param;
 }
 
-void Flight::setDepartCity(string param)
+void Flight::setDepartCity(char* param)
 {
 	this->departCity = param;
 }
 
-void Flight::setArriveCity(string param)
+void Flight::setArriveCity(char* param)
 {
 	this->arriveCity = param;
 }
@@ -63,22 +67,22 @@ int Flight::getDepartTime()
 	return this->departTime;
 }
 
-string Flight::getAirline()
+char* Flight::getAirline()
 {
 	return this->airline;
 }
 
-string Flight::getAircraftType()
+char* Flight::getAircraftType()
 {
 	return this->aircraftType;
 }
 
-string Flight::getDepartCity()
+char* Flight::getDepartCity()
 {
 	return this->departCity;
 }
 
-string Flight::getArriveCity()
+char* Flight::getArriveCity()
 {
 	return this->arriveCity;
 }

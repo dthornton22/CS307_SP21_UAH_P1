@@ -6,6 +6,8 @@
 // Due Date: 03/14/2021
 // ****************************************
 #include <string>
+#include <iostream>
+#include <vector>
 #ifndef FLIGHTDATA_H
 #define FLIGHTDATA_H
 
@@ -16,31 +18,31 @@ class Flight
 	private:
 		int flightNumber{0};
 		int departTime{0};
-		string airline{"empty"};
-		string aircraftType{"empty"};
-		string departCity{"empty"};
-		string arriveCity{"empty"};
+		char* airline{};
+		char* aircraftType{};
+		char* departCity{};
+		char* arriveCity{};
 
 	public:
 		Flight(); 							// Default constructor
 		~Flight(); 							// Destructor
-		void readData(string infile);		// 
+		void readData();					// 
 
 		// Set functions
 		void setFlightNumber(int param);
 		void setDepartTime(int param);
-		void setAirline(string param);
-		void setAircraftType(string param);
-		void setDepartCity(string param);
-		void setArriveCity(string param);
+		void setAirline(char* param);
+		void setAircraftType(char* param);
+		void setDepartCity(char* param);
+		void setArriveCity(char* param);
 
 		// Get functions
 		int getFlightNumber();
 		int getDepartTime();
-		string getAirline();
-		string getAircraftType();
-		string getDepartCity();
-		string getArriveCity();
+		char* getAirline();
+		char* getAircraftType();
+		char* getDepartCity();
+		char* getArriveCity();
 };
 
 #endif

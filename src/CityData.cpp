@@ -10,7 +10,7 @@
 
 City::City()
 {
-	
+	City::readData();
 }
 
 City::~City()
@@ -18,9 +18,21 @@ City::~City()
 	
 }
 
-void City::readData(string infile)
+void City::readData()
 {
-
+	CityDataParser* ParseCity = new CityDataParser();
+	ParseCity->InitCityData("C:/Users/David Thornton/source/repos/CS307Project1/src/Data/CityData01.xml");
+	vector<City> CityList;
+	printf("Number of cities: %d\n", ParseCity->getCityCount()); // test
+/*
+	for (int i = 0; i < ParseCity->getCityCount(); i++)        // iterate through all cities collecting data
+	{
+		ParseCity->getCityData(name, state, symbol, &latitude, &longitude);
+		//City newcity(*tempcityname, *tempstatename, *tempsymbol, templat, templon);
+		//CityList.push_back(newcity);
+		//newcity.printcitydata();
+	}
+	*/
 }
 
 int City::calcDistance(int flightnum)

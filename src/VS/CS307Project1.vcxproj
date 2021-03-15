@@ -157,6 +157,13 @@
     <ClInclude Include="..\FlightDataParser.h" />
     <ClInclude Include="..\Simulation.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="..\Data\AirlineFlightData01.xml" />
+    <Xml Include="..\Data\CityData01.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Data\FlightSim01.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

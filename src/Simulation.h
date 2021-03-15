@@ -6,6 +6,8 @@
 // Due Date: 03/14/2021
 // ****************************************
 #include <string>
+#include "CityData.h"
+#include "FlightData.h"
 #ifndef SIMULATION_H
 #define SIMULATION_H
 

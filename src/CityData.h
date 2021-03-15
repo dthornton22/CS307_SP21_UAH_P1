@@ -6,6 +6,8 @@
 // Due Date: 03/14/2021
 // ****************************************
 #include <string>
+#include <vector>
+#include <iostream>
 #ifndef CITY_H
 #define CITY_H
 
@@ -24,7 +26,7 @@ class City
 	public:
 		City(); 							// Default constructor
 		~City(); 							// Destructor
-		void readData(string infile);		// 
+		void readData();					// 
 		int calcDistance(int flightnum);	// 
 
 		// Set functions

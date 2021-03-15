@@ -17,17 +17,17 @@ Aircraft::~Aircraft()
 	
 }
 
-void Aircraft::readData(string infile)
+void Aircraft::readData()
 {
 	
 }
 
-void Aircraft::setMake(string param)
+void Aircraft::setMake(char* param)
 {
 	this->make = param;
 }
 
-void Aircraft::setModel(string param)
+void Aircraft::setModel(char* param)
 {
 	this->model = param;
 }
@@ -57,12 +57,12 @@ void Aircraft::setFuselageLength(int param)
 	this->fuselageLength = param;
 }
 
-string Aircraft::getMake()
+char* Aircraft::getMake()
 {
 	return this->make;
 }
 
-string Aircraft::getModel()
+char* Aircraft::getModel()
 {
 	return this->model;
 }
