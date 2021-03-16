@@ -2,15 +2,19 @@
 // Program Title: Project1
 // Project File: CityData.cpp
 // Name: David Thornton
-// Course Section: CS-307, SP 2021
-// Due Date: 03/14/2021
+// Course: CS-307
+// Due Date: 03/16/2021
 // ****************************************
 #include "CityData.h"
-#include "CityDataParser.h"
 
-City::City()
+City::City(char name, char state, char symbol, double lat, double lon)
 {
-	City::readData();
+	this->setName(name);
+	this->setState(state);
+	this->setSymbol(symbol);
+	this->setLatitude(lat);
+	this->setLongitude(lon);
+	this->setSymbol(symbol);
 }
 
 City::~City()
@@ -20,35 +24,41 @@ City::~City()
 
 void City::readData()
 {
-	CityDataParser* ParseCity = new CityDataParser();
-	ParseCity->InitCityData("C:/Users/David Thornton/source/repos/CS307Project1/src/Data/CityData01.xml");
+	CityDataParser * ParseCity = new CityDataParser();
+	ParseCity->InitCityData("CityData01.xml");
+	int CityCount = ParseCity->getCityCount();
 	vector<City> CityList;
-	printf("Number of cities: %d\n", ParseCity->getCityCount()); // test
-/*
-	for (int i = 0; i < ParseCity->getCityCount(); i++)        // iterate through all cities collecting data
+	for (int i = 0; i < CityCount; i++)	// iterate through all cities collecting data
 	{
-		ParseCity->getCityData(name, state, symbol, &latitude, &longitude);
-		//City newcity(*tempcityname, *tempstatename, *tempsymbol, templat, templon);
-		//CityList.push_back(newcity);
-		//newcity.printcitydata();
+		ParseCity->getCityData(name , state, sym, &latitude, &longitude);
+		City NewCity(*name, *state, *sym, latitude, longitude);
+		CityList.push_back(NewCity);
 	}
-	*/
+	double* distances;
+	char** symbols;
+	ParseCity->getCitySymbolsArray(&symbols);				// Get the city Symbols
+	ParseCity->getDistTable(&distances);					// Get the distance table
 }
 
-int City::calcDistance(int flightnum)
+double City::calcDistance(char depCity, char arrCity)
 {
 
 	return 0;
 }
 
-void City::setName(char* param)
+void City::setSymbol(char param)
 {
-	this->name = param;
+	*this->sym = param;
 }
 
-void City::setState(char* param)
+void City::setName(char param)
 {
-	this->state = param;
+	*this->name = param;
+}
+
+void City::setState(char param)
+{
+	*this->state = param;
 }
 
 void City::setLatitude(double param)
@@ -61,20 +71,21 @@ void City::setLongitude(double param)
 	this->longitude = param;
 }
 
-char* City::getName()
+char City::getName()
 {
-	return this->name;
+	return *this->name;
 }
 
-char* City::getState()
+char City::getSymbol()
 {
-	return this->state;
+	return *this->sym;
 }
 
-char* City::getSymbol()
+char City::getState()
 {
-	return this->symbol;
+	return *this->state;
 }
+
 double City::getLatitude()
 {
 	return this->latitude;

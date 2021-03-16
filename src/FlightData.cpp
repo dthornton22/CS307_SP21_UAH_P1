@@ -2,15 +2,22 @@
 // Program Title: Project1
 // Project File: FlightData.cpp
 // Name: David Thornton
-// Course Section: CS-307, SP 2021
-// Due Date: 03/14/2021
+// Course: CS-307
+// Due Date: 03/16/2021
 // ****************************************
 #include "FlightData.h"
-#include "FlightDataParser.h"
 
-Flight::Flight()
+Flight::Flight(char airline, char plane,
+	int flNum, char departCity, int depHr,
+	int depMin, char destCity)
 {
-	Flight::readData();
+	this->flightNumber = flNum;
+	this->departTimeHr = depHr;
+	this->departTimeMin = depMin;
+	this->setAircraftType(plane);
+	this->setAirline(airline);
+	this->setDepartCity(departCity);
+	this->setArriveCity(destCity);
 }
 
 Flight::~Flight()
@@ -20,11 +27,24 @@ Flight::~Flight()
 
 void Flight::readData()
 {
-	FlightDataParser* ParseFlight = new FlightDataParser();
-	ParseFlight->InitFlightData("C:/Users/David Thornton/source/repos/CS307Project1/src/Data/AirlineFlightData01.xml");
+	FlightDataParser *ParseFlight = new FlightDataParser();
+	ParseFlight->InitFlightData("AirlineFlightData01.xml");
+	const int FlightCount = ParseFlight->getFlightCount();
 	vector<Flight> FlightList;
-	printf("Number of flights: %d\n", ParseFlight->getFlightCount()); // test
+	for (int i = 0; i < FlightCount; i++)
+	{
+		ParseFlight->getFlightData(airline, aircraftType, &flightNumber, departCity, &departTimeHr, &departTimeMin, arriveCity);
+		Flight *NewFlight = new Flight(*airline, *aircraftType, flightNumber, *departCity, departTimeHr, departTimeMin, *arriveCity);
+		FlightList.push_back(*NewFlight);
+		PrintData();
+	}
+	ParseFlight->getStartTime(&StartHr, &StartMin);
+}
 
+void Flight::PrintData()
+{
+	cout << "airline: " << airline << endl;
+	cout << "aircraft type: " << aircraftType << endl;
 }
 
 void Flight::setFlightNumber(int param)
@@ -32,29 +52,34 @@ void Flight::setFlightNumber(int param)
 	this->flightNumber = param;
 }
 
-void Flight::setDepartTime(int param)
+void Flight::setDepartTimeMin(int param)
 {
-	this->departTime = param;
+	this->departTimeMin = param;
 }
 
-void Flight::setAirline(char* param)
+void Flight::setDepartTimeHr(int param)
 {
-	this->airline = param;
+	this->departTimeHr = param;
 }
 
-void Flight::setAircraftType(char* param)
+void Flight::setAirline(char param)
 {
-	this->aircraftType = param;
+	*this->airline = param;
 }
 
-void Flight::setDepartCity(char* param)
+void Flight::setAircraftType(char param)
 {
-	this->departCity = param;
+	*this->aircraftType = param;
 }
 
-void Flight::setArriveCity(char* param)
+void Flight::setDepartCity(char param)
 {
-	this->arriveCity = param;
+	*this->departCity = param;
+}
+
+void Flight::setArriveCity(char param)
+{
+	*this->arriveCity = param;
 }
 
 int Flight::getFlightNumber()
@@ -62,27 +87,42 @@ int Flight::getFlightNumber()
 	return this->flightNumber;
 }
 
-int Flight::getDepartTime()
+int Flight::getDepartMin()
 {
-	return this->departTime;
+	return this->departTimeMin;
 }
 
-char* Flight::getAirline()
+int Flight::getDepartHour()
 {
-	return this->airline;
+	return this->departTimeHr;
 }
 
-char* Flight::getAircraftType()
+char Flight::getAirline()
 {
-	return this->aircraftType;
+	return *this->airline;
 }
 
-char* Flight::getDepartCity()
+char Flight::getAircraftType()
 {
-	return this->departCity;
+	return *this->aircraftType;
 }
 
-char* Flight::getArriveCity()
+char Flight::getDepartCity()
 {
-	return this->arriveCity;
+	return *this->departCity;
+}
+
+char Flight::getArriveCity()
+{
+	return *this->arriveCity;
+}
+
+int Flight::getStartMin()
+{
+	return this->StartMin;
+}
+
+int Flight::getStartHr()
+{
+	return this->StartHr;
 }

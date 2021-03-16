@@ -2,8 +2,8 @@
 // Program Title: Project1
 // Project File: MyProgram.cpp
 // Name: David Thornton
-// Course Section: CS-307, SP 2021
-// Due Date: 03/14/2021
+// Course: CS-307
+// Due Date: 03/16/2021
 // ****************************************
 #include "Simulation.h"
 #include <iostream>

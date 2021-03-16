@@ -2,92 +2,108 @@
 // Program Title: Project1
 // Project File: AircraftData.cpp
 // Name: David Thornton
-// Course Section: CS-307, SP 2021
-// Due Date: 03/14/2021
+// Course: CS-307
+// Due Date: 03/16/2021
 // ****************************************
 #include "AircraftData.h"
-
-Aircraft::Aircraft()
+Aircraft::Aircraft(char make, char desc,
+	double roc, double wngs, double len,
+	double cs, double ca)
 {
-	
+	this->setMake(make);
+	this->setModel(desc);
+	this->cruiseSpeed = cs;
+	this->cruiseAltitude = ca;
+	this->climbSpeed = roc;
+	this->wingspan = wngs;
+	this->fuselageLength = len;
 }
 
 Aircraft::~Aircraft()
 {
-	
+
 }
 
 void Aircraft::readData()
 {
-	
+	FlightDataParser *ParseAircraft = new FlightDataParser();
+	ParseAircraft->InitFlightData("AirlineFlightData01.xml");
+	int AircraftCount = ParseAircraft->getAircraftCount();
+	vector<Aircraft> AircraftList;
+	for (int i = 0; i < AircraftCount; i++)
+	{
+		ParseAircraft->getAircraftData(make, model, &climbSpeed, &wingspan, &fuselageLength, &cruiseSpeed, &cruiseAltitude);
+		Aircraft NewAircraft(*make, *model, climbSpeed, wingspan, fuselageLength, cruiseSpeed, cruiseAltitude);
+		AircraftList.push_back(NewAircraft);
+	}
 }
 
-void Aircraft::setMake(char* param)
+void Aircraft::setMake(char param)
 {
-	this->make = param;
+	*this->make = param;
 }
 
-void Aircraft::setModel(char* param)
+void Aircraft::setModel(char param)
 {
-	this->model = param;
+	*this->model = param;
 }
 
-void Aircraft::setCruiseSpeed(int param)
+void Aircraft::setCruiseSpeed(double param)
 {
 	this->cruiseAltitude = param;
 }
 
-void Aircraft::setCruiseAltitude(int param)
+void Aircraft::setCruiseAltitude(double param)
 {
 	this->cruiseAltitude = param;
 }
 
-void Aircraft::setClimbSpeed(int param)
+void Aircraft::setClimbSpeed(double param)
 {
 	this->climbSpeed = param;
 }
 
-void Aircraft::setWingspan(int param)
+void Aircraft::setWingspan(double param)
 {
 	this->wingspan = param;
 }
 
-void Aircraft::setFuselageLength(int param)
+void Aircraft::setFuselageLength(double param)
 {
 	this->fuselageLength = param;
 }
 
-char* Aircraft::getMake()
+char Aircraft::getMake()
 {
-	return this->make;
+	return *this->make;
 }
 
-char* Aircraft::getModel()
+char Aircraft::getModel()
 {
-	return this->model;
+	return *this->model;
 }
 
-int Aircraft::getCruiseSpeed()
+double Aircraft::getCruiseSpeed()
 {
 	return this->cruiseSpeed;
 }
 
-int Aircraft::getCruiseAltitude()
+double Aircraft::getCruiseAltitude()
 {
 	return this->cruiseAltitude;
 }
 
-int Aircraft::getClimbSpeed()
+double Aircraft::getClimbSpeed()
 {
 	return this->climbSpeed;
 }
 
-int Aircraft::getWingspan()
+double Aircraft::getWingspan()
 {
 	return this->wingspan;
 }
 
-int Aircraft::getFuselageLength()
+double Aircraft::getFuselageLength()
 {
 	return this->fuselageLength;
 }
