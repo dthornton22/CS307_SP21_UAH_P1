@@ -1,7 +1,7 @@
 // ****************************************
-// Program Title: Project1
+// Program Title: AircraftRapper
 // Project File: MyProgram.cpp
-// Name: David Thornton
+// Name: Nolan Anderson
 // Course: CS-307
 // Due Date: 03/16/2021
 // ****************************************
@@ -10,7 +10,8 @@
 
 int main(int argc, char* argv[])
 {
-	Simulation mySim; 	            // Instantiate Simulation object
-	mySim.initializeSimulation();   // Call Simulation::initializeSimulation
-	mySim.runSimulation();          // Call Simulation::runSimulation
+    cout << "Starting program!!!" << endl;
+    Simulation mySim; 	            // Instantiate Simulation object
+    mySim.initializeSimulation();   // Call Simulation::initializeSimulation
+    //mySim.runSimulation();          // Call Simulation::runSimulation
 }

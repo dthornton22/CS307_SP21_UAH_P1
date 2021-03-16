@@ -1,12 +1,14 @@
 // ****************************************
-// Program Title: Project1
+// Program Title: AircraftRapper
 // Project File: AircraftData.cpp
-// Name: David Thornton
+// Name: Nolan Anderson
 // Course: CS-307
 // Due Date: 03/16/2021
 // ****************************************
 #include "AircraftData.h"
-Aircraft::Aircraft(char make, char desc, double roc, double wngs, double len, double cs, double ca)
+Aircraft::Aircraft(char make, char desc,
+	double roc, double wngs, double len,
+	double cs, double ca)
 {
 	this->setMake(make);
 	this->setModel(desc);
@@ -19,12 +21,13 @@ Aircraft::Aircraft(char make, char desc, double roc, double wngs, double len, do
 
 Aircraft::~Aircraft()
 {
+
 }
 
 void Aircraft::readData()
 {
-	FlightDataParser* ParseAircraft = new FlightDataParser();
-	ParseAircraft->InitFlightData("AirlineFlightData01.xml");
+	FlightDataParser *ParseAircraft = new FlightDataParser();
+	ParseAircraft->InitFlightData("../AirlineFlightData01.xml");
 	int AircraftCount = ParseAircraft->getAircraftCount();
 	vector<Aircraft> AircraftList;
 	for (int i = 0; i < AircraftCount; i++)
@@ -37,12 +40,12 @@ void Aircraft::readData()
 
 void Aircraft::setMake(char param)
 {
-	*this->make = param;
+	this->make[128] = param;
 }
 
 void Aircraft::setModel(char param)
 {
-	*this->model = param;
+	this->model[128] = param;
 }
 
 void Aircraft::setCruiseSpeed(double param)
@@ -72,12 +75,12 @@ void Aircraft::setFuselageLength(double param)
 
 char Aircraft::getMake()
 {
-	return *this->make;
+	return this->make[128];
 }
 
 char Aircraft::getModel()
 {
-	return *this->model;
+	return this->model[128];
 }
 
 double Aircraft::getCruiseSpeed()

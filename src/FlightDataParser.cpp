@@ -31,6 +31,7 @@ FlightDataParser::FlightDataParser()
 //------------------------------------------
 FlightDataParser::~FlightDataParser()
 {
+
 }
 
 //------------------------------------------

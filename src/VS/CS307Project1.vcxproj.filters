@@ -58,15 +58,15 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\Data\AirlineFlightData01.xml">
+    <Xml Include="..\AirlineFlightData01.xml">
       <Filter>Resource Files</Filter>
     </Xml>
-    <Xml Include="..\Data\CityData01.xml">
+    <Xml Include="..\CityData01.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Data\FlightSim01.txt">
+    <Text Include="..\FlightSim01.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

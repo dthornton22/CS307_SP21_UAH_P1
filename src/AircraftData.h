@@ -2,8 +2,8 @@
 // Program Title: Project1
 // Project File: AircraftData.h
 // Name: David Thornton
-// Course: CS-307
-// Due Date: 03/16/2021
+// Course Section: CS-307, SP 2021
+// Due Date: 03/14/2021
 // ****************************************
 #include "FlightDataParser.h"
 #include "CityDataParser.h"
@@ -27,9 +27,11 @@ private:
 	double fuselageLength{ 0 };
 
 public:
-	Aircraft(char make, char desc, double roc, double wngs, double len, double cs, double ca); // Default constructor
+	Aircraft(char make, char desc,
+		double roc, double wngs, double len,
+		double cs, double ca); 						// Default constructor
 	~Aircraft(); 						// Destructor
-	void readData();		//
+	void readData();		// 	
 
 	// Set functions
 	void setMake(char param);
@@ -39,7 +41,6 @@ public:
 	void setClimbSpeed(double param);
 	void setWingspan(double param);
 	void setFuselageLength(double param);
-
 	// Get functions
 	char getMake();
 	char getModel();
