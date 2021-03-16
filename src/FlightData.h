@@ -33,6 +33,8 @@ public:
 	Flight(char airline, char plane, int flNum, char departCity, int depHr, int depMin, char destCity); // Default constructor
 	~Flight(); 							// Destructor
 	void readData();					//
+	void printDeparture(int CurrentHr, int CurrentMin);
+	void printArrival(int CurrentHr, int CurrentMin);
 
 	// Set functions
 	void setFlightNumber(int param);
