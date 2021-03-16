@@ -10,7 +10,6 @@
 
 int main(int argc, char* argv[])
 {
-    cout << "Starting program!!!" << endl;
     Simulation mySim; 	            // Instantiate Simulation object
     mySim.initializeSimulation();   // Call Simulation::initializeSimulation
     mySim.runSimulation();          // Call Simulation::runSimulation

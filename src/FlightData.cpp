@@ -7,9 +7,7 @@
 // ****************************************
 #include "FlightData.h"
 
-Flight::Flight(char airline, char plane,
-	int flNum, char departCity, int depHr,
-	int depMin, char destCity)
+Flight::Flight(char airline, char plane, int flNum, char departCity, int depHr, int depMin, char destCity)
 {
 	this->flightNumber = flNum;
 	this->departTimeHr = depHr;

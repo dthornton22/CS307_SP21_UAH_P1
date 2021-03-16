@@ -6,9 +6,7 @@
 // Due Date: 03/16/2021
 // ****************************************
 #include "AircraftData.h"
-Aircraft::Aircraft(char make, char desc,
-	double roc, double wngs, double len,
-	double cs, double ca)
+Aircraft::Aircraft(char make, char desc, double roc, double wngs, double len, double cs, double ca)
 {
 	this->setMake(make);
 	this->setModel(desc);
