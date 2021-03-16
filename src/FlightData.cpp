@@ -35,20 +35,35 @@ void Flight::readData()
 		ParseFlight->getFlightData(airline, aircraftType, &flightNumber, departCity, &departTimeHr, &departTimeMin, arriveCity);
 		Flight *NewFlight = new Flight(*airline, *aircraftType, flightNumber, *departCity, departTimeHr, departTimeMin, *arriveCity);
 		FlightList.push_back(*NewFlight);
+		PrintData();
 	}
 	ParseFlight->getStartTime(&StartHr, &StartMin);
 }
 
+void Flight::PrintData()
+{
+	cout << "Airline: " << this->getAircraftType() << endl;
+}
+
 void Flight::PrintDeparture(int CurrentHr, int CurrentMin)
 {
-	//cout << "TESTING: " << FlightList[0].getAirline() << endl;
-	//cout << "TESTING 2: " << FlightList[1].getAirline() << endl;
+	//for (int i = 0; i < 15; i++)
+	//{
+	//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+	//	printf("now departing: %s flight %d, %s\n", FlightList[i].getAircraftType(), FlightList[i].flightNumber, FlightList[i].aircraftType);
+	//	printf("                 from %s, %s\n", FlightList[i].departCity, "city-state");
+	//	printf("                 en route to %s, %s\n", FlightList[i].arriveCity, "city-state");
+	//	printf("                 estimated time of arrival: %d:%d", "call", "time calculation\n");
+	//	printf("current clock time: %d:%d\n", CurrentHr, CurrentMin);
+	//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+	//}
+
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-	printf("Now departing: %s Flight %d, %s\n", airline, flightNumber, aircraftType);
-	printf("                 From %s, %s\n", departCity, "city-state");
-	printf("                 En route to %s, %s\n", arriveCity, "city-state");
-	printf("                 Estimated Time of Arrival: %d:%d", "call", "time calculation\n");
-	printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin);
+	printf("now departing: %s flight %d, %s\n", this->getAircraftType(), this->getFlightNumber(), this->getAircraftType());
+	printf("                 from %s, %s\n", this->getDepartCity(), "city-state");
+	printf("                 en route to %s, %s\n", this->getArriveCity(), "city-state");
+	//printf("                 estimated time of arrival: %d:%d", "call", "time calculation\n");
+	//printf("current clock time: %d:%d\n", CurrentHr, CurrentMin);
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 }
 
@@ -58,7 +73,7 @@ void Flight::PrintArrival(int CurrentHr, int CurrentMin)
 	printf("Now arriving: %s Flight %d, %s\n", airline, flightNumber, aircraftType);
 	printf("                 at %s, %s\n", departCity, "dststatename");
 	printf("                 from %s, %s\n", arriveCity, "depstatename");
-	printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin);
+	//printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin);
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 }
 
@@ -112,24 +127,24 @@ int Flight::getDepartHour()
 	return this->departTimeHr;
 }
 
-char Flight::getAirline()
+char* Flight::getAirline()
 {
-	return *this->airline;
+	return this->airline;
 }
 
-char Flight::getAircraftType()
+char* Flight::getAircraftType()
 {
-	return *this->aircraftType;
+	return this->aircraftType;
 }
 
-char Flight::getDepartCity()
+char* Flight::getDepartCity()
 {
-	return *this->departCity;
+	return this->departCity;
 }
 
-char Flight::getArriveCity()
+char* Flight::getArriveCity()
 {
-	return *this->arriveCity;
+	return this->arriveCity;
 }
 
 int Flight::getStartMin()

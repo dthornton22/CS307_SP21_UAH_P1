@@ -47,6 +47,7 @@ class Flight
 		void setArriveCity(char param);
 		void PrintDeparture(int CurrentHr, int CurrentMin);
 		void PrintArrival(int CurrentHr, int CurrentMin);
+		void PrintData();
 
 		// Get functions
 		int getFlightNumber();
@@ -54,10 +55,10 @@ class Flight
 		int getDepartHour();
 		int getStartHr();
 		int getStartMin();
-		char getAirline();
-		char getAircraftType();
-		char getDepartCity();
-		char getArriveCity();
+		char* getAirline();
+		char* getAircraftType();
+		char* getDepartCity();
+		char* getArriveCity();
 };
 
 #endif

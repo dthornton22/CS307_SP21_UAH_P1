@@ -38,10 +38,8 @@ class Simulation
 		~Simulation(); 					// Destructor
 		double getFlightETA();			// Todo: what does this return
 		void printReport();				// Prints report to terminal and output file
-		void runSimulation();			// Runs the simulation
+		void runSimulation(double clocktime);// Runs the simulation
 		void initializeSimulation();	// Set up the simulation
-		void NewDeparture();
-		void NewArrival();
 
 
 		// Set functions

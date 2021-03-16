@@ -25,14 +25,14 @@ double Simulation::getFlightETA()
 void Simulation::printReport()
 {
 	testFlight->PrintDeparture(07, 44);
-	testFlight->PrintArrival(07, 35);
+	//testFlight->PrintArrival(07, 35);
 }
 
-void Simulation::runSimulation()
+void Simulation::runSimulation(double clocktime)
 {
 	_ftime_s(&tStruct);	// Get start time
 	thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
-	outputTime = thisTime + 1.0; // Set next 1 second interval time (we could add, e.g., .5 to delay just a half second)
+	outputTime = thisTime + 1.0/clocktime; // Set next 1 second interval time (we could add, e.g., .5 to delay just a half second)
 
 	while (!done)     // Start an eternal loop
 	{
@@ -42,7 +42,7 @@ void Simulation::runSimulation()
 		if (thisTime >= outputTime)
 		{
 			printReport();     // Call function to print all data
-			outputTime += 1.0; // Set time for next 1 second interval
+			outputTime += 1.0/clocktime; // Set time for next 1 second interval
 		}
 		// Do other stuff here
 	}
@@ -67,7 +67,7 @@ void Simulation::initializeSimulation()
 	testCity->readData();
 	testFlight->readData();
 	testAircraft->readData();
-	runSimulation();
+	runSimulation(clockMult);
 }
 
 void Simulation::setClockMult(int param)
