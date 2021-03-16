@@ -33,7 +33,6 @@ Simulation::Simulation()
 
 Simulation::~Simulation()
 {
-	
 }
 
 double Simulation::getFlightETA()

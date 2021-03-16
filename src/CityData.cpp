@@ -19,18 +19,17 @@ City::City(char name, char state, char symbol, double lat, double lon)
 
 City::~City()
 {
-	
 }
 
 void City::readData()
 {
-	CityDataParser * ParseCity = new CityDataParser();
+	CityDataParser* ParseCity = new CityDataParser();
 	ParseCity->InitCityData("CityData01.xml");
 	int CityCount = ParseCity->getCityCount();
 	vector<City> CityList;
 	for (int i = 0; i < CityCount; i++)	// iterate through all cities collecting data
 	{
-		ParseCity->getCityData(name , state, sym, &latitude, &longitude);
+		ParseCity->getCityData(name, state, sym, &latitude, &longitude);
 		City NewCity(*name, *state, *sym, latitude, longitude);
 		CityList.push_back(NewCity);
 	}
@@ -42,7 +41,6 @@ void City::readData()
 
 double City::calcDistance(char depCity, char arrCity)
 {
-
 	return 0;
 }
 

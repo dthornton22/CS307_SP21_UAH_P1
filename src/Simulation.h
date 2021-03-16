@@ -19,31 +19,30 @@
 
 using namespace std;
 
-
 class Simulation
 {
-	private:
-		int clockMult{0};
-		string inputFile;
-		struct _timeb tStruct;
-		double thisTime{0};
-		double outputTime{0};
+private:
+	int clockMult{ 0 };
+	string inputFile;
+	struct _timeb tStruct { 0 };
+	double thisTime{ 0 };
+	double outputTime{ 0 };
 
-	public:
-		Simulation(); 					// Default constructor
-		~Simulation(); 					// Destructor
-		double getFlightETA();			// Todo: what does this return
-		void printReport();				// Prints report to terminal and output file
-		void runSimulation();			// Runs the simulation
-		void initializeSimulation();	// Set up the simulation
+public:
+	Simulation(); 					// Default constructor
+	~Simulation(); 					// Destructor
+	double getFlightETA();			// Todo: what does this return
+	void printReport();				// Prints report to terminal and output file
+	void runSimulation();			// Runs the simulation
+	void initializeSimulation();	// Set up the simulation
 
-		// Set functions
-		void setClockMult(int param);
-		void setInFile(string param);
+	// Set functions
+	void setClockMult(int param);
+	void setInFile(string param);
 
-		// Get functions
-		int getClockMult();
-		string getInFile();
+	// Get functions
+	int getClockMult();
+	string getInFile();
 };
 
 #endif

@@ -19,12 +19,11 @@ Aircraft::Aircraft(char make, char desc, double roc, double wngs, double len, do
 
 Aircraft::~Aircraft()
 {
-
 }
 
 void Aircraft::readData()
 {
-	FlightDataParser *ParseAircraft = new FlightDataParser();
+	FlightDataParser* ParseAircraft = new FlightDataParser();
 	ParseAircraft->InitFlightData("AirlineFlightData01.xml");
 	int AircraftCount = ParseAircraft->getAircraftCount();
 	vector<Aircraft> AircraftList;

@@ -20,16 +20,16 @@ class Aircraft
 private:
 	char make[128];
 	char model[128];
-	double cruiseSpeed{0};
-	double cruiseAltitude{0};
-	double climbSpeed{0};
-	double wingspan{0};
-	double fuselageLength{0};
+	double cruiseSpeed{ 0 };
+	double cruiseAltitude{ 0 };
+	double climbSpeed{ 0 };
+	double wingspan{ 0 };
+	double fuselageLength{ 0 };
 
 public:
 	Aircraft(char make, char desc, double roc, double wngs, double len, double cs, double ca); // Default constructor
 	~Aircraft(); 						// Destructor
-	void readData();		// 	
+	void readData();		//
 
 	// Set functions
 	void setMake(char param);

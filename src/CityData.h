@@ -17,32 +17,32 @@ using namespace std;
 
 class City
 {
-	private:
-		char name[128];
-		char state[128];
-		char sym[128];
-		double latitude{0};
-		double longitude{0};
+private:
+	char name[128];
+	char state[128];
+	char sym[128];
+	double latitude{ 0 };
+	double longitude{ 0 };
 
-	public:
-		City(char name, char state, char symbol, double lat, double lon); // Default constructor
-		~City(); 							// Destructor
-		void readData();					// 
-		double calcDistance(char dep, char arr);	// 
+public:
+	City(char name, char state, char symbol, double lat, double lon); // Default constructor
+	~City(); 							// Destructor
+	void readData();					//
+	double calcDistance(char dep, char arr);	//
 
-		// Set functions
-		void setName(char param);
-		void setState(char param);
-		void setSymbol(char param);
-		void setLatitude(double param);
-		void setLongitude(double param);
+	// Set functions
+	void setName(char param);
+	void setState(char param);
+	void setSymbol(char param);
+	void setLatitude(double param);
+	void setLongitude(double param);
 
-		// Get functions
-		char getName();
-		char getState();
-		char getSymbol();
-		double getLatitude();
-		double getLongitude();
+	// Get functions
+	char getName();
+	char getState();
+	char getSymbol();
+	double getLatitude();
+	double getLongitude();
 };
 
 #endif

@@ -20,19 +20,18 @@ Flight::Flight(char airline, char plane, int flNum, char departCity, int depHr, 
 
 Flight::~Flight()
 {
-	
 }
 
 void Flight::readData()
 {
-	FlightDataParser *ParseFlight = new FlightDataParser();
+	FlightDataParser* ParseFlight = new FlightDataParser();
 	ParseFlight->InitFlightData("AirlineFlightData01.xml");
 	const int FlightCount = ParseFlight->getFlightCount();
 	vector<Flight> FlightList;
 	for (int i = 0; i < FlightCount; i++)
 	{
 		ParseFlight->getFlightData(airline, aircraftType, &flightNumber, departCity, &departTimeHr, &departTimeMin, arriveCity);
-		Flight *NewFlight = new Flight(*airline, *aircraftType, flightNumber, *departCity, departTimeHr, departTimeMin, *arriveCity);
+		Flight* NewFlight = new Flight(*airline, *aircraftType, flightNumber, *departCity, departTimeHr, departTimeMin, *arriveCity);
 		FlightList.push_back(*NewFlight);
 		PrintData();
 	}
