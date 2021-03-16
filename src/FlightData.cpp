@@ -33,18 +33,24 @@ void Flight::readData()
 		ParseFlight->getFlightData(airline, aircraftType, &flightNumber, departCity, &departTimeHr, &departTimeMin, arriveCity);
 		Flight* NewFlight = new Flight(*airline, *aircraftType, flightNumber, *departCity, departTimeHr, departTimeMin, *arriveCity);
 		FlightList.push_back(*NewFlight);
+		PrintData();
 	}
 	ParseFlight->getStartTime(&StartHr, &StartMin);
 }
 
-void Flight::printDeparture(int CurrentHr, int CurrentMin)
+void Flight::PrintData()
+{
+	cout << "Airline: " << this->getAircraftType() << endl;
+}
+
+void Flight::PrintDeparture(int CurrentHr, int CurrentMin)
 {
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-	printf("Now departing: %s Flight %d, %s\n", airline, flightNumber, aircraftType);
-	printf("\t\tFrom %s, %s\n", departCity, "city-state");
-	printf("\t\tEn route to %s, %s\n", arriveCity, "city-state");
-	//printf("\t\tEstimated Time of Arrival: %d:%d", "call", "time calculation\n");
-	printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin);
+	printf("now departing: %s flight %d, %s\n", this->getAircraftType(), this->getFlightNumber(), this->getAircraftType());
+	printf("                 from %s, %s\n", this->getDepartCity(), "city-state");
+	printf("                 en route to %s, %s\n", this->getArriveCity(), "city-state");
+	//printf("                 estimated time of arrival: %d:%d", "call", "time calculation\n");
+	//printf("current clock time: %d:%d\n", CurrentHr, CurrentMin);
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 }
 
@@ -108,24 +114,24 @@ int Flight::getDepartHour()
 	return this->departTimeHr;
 }
 
-char Flight::getAirline()
+char* Flight::getAirline()
 {
-	return *this->airline;
+	return this->airline;
 }
 
-char Flight::getAircraftType()
+char* Flight::getAircraftType()
 {
-	return *this->aircraftType;
+	return this->aircraftType;
 }
 
-char Flight::getDepartCity()
+char* Flight::getDepartCity()
 {
-	return *this->departCity;
+	return this->departCity;
 }
 
-char Flight::getArriveCity()
+char* Flight::getArriveCity()
 {
-	return *this->arriveCity;
+	return this->arriveCity;
 }
 
 int Flight::getStartMin()

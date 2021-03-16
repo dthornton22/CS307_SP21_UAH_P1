@@ -28,13 +28,13 @@ private:
 	double thisTime{ 0 };
 	double outputTime{ 0 };
 
-public:
-	Simulation(); 					// Default constructor
-	~Simulation(); 					// Destructor
-	double getFlightETA();			// Todo: what does this return
-	void printReport();				// Prints report to terminal and output file
-	void runSimulation();			// Runs the simulation
-	void initializeSimulation();	// Set up the simulation
+	public:
+		Simulation(); 					// Default constructor
+		~Simulation(); 					// Destructor
+		double getFlightETA();			// Todo: what does this return
+		void printReport();				// Prints report to terminal and output file
+		void runSimulation(double clocktime);// Runs the simulation
+		void initializeSimulation();	// Set up the simulation
 
 	// Set functions
 	void setClockMult(int param);
