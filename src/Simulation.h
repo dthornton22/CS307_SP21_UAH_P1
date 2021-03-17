@@ -31,6 +31,7 @@ class Simulation
 		double          outputTime;
 		int				CurrentMin;
 		int				CurrentHr;
+		int				Counter{ 0 };
 		bool            done = false;  // while loop flag
 
 	public:
@@ -40,8 +41,8 @@ class Simulation
 		void printReport();				// Prints report to terminal and output file
 		void runSimulation(double clocktime);// Runs the simulation
 		void initializeSimulation();	// Set up the simulation
-
-
+		void PrintCurrentTime();
+		void PrintStartTime();
 		// Set functions
 		void setClockMult(int param);
 		void setInFile(char param);
