@@ -21,10 +21,10 @@ City::~City()
 {
 }
 
-void City::readData()
+void City::readData(char* infile)
 {
 	CityDataParser* ParseCity = new CityDataParser();
-	ParseCity->InitCityData("CityData01.xml");
+	ParseCity->InitCityData(infile);
 	int CityCount = ParseCity->getCityCount();
 	vector<City> CityList;
 	for (int i = 0; i < CityCount; i++)	// iterate through all cities collecting data

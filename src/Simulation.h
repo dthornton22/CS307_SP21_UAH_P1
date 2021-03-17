@@ -22,8 +22,8 @@ using namespace std;
 class Simulation
 {
 private:
-	int clockMult{ 0 };
-	int Counter{ 0 };
+	int clockMult{0};
+	int Counter{0};
 	int CurrentMin{ 0 };
 	int	CurrentHr{ 0 };
 	string inputFile;
@@ -31,18 +31,19 @@ private:
 	double thisTime{ 0 };
 	double outputTime{ 0 };
 
-	public:
-		Simulation(); 					// Default constructor
-		~Simulation(); 					// Destructor
-		double getFlightETA();			// Todo: what does this return
-		void printReport();				// Prints report to terminal and output file
-		void runSimulation(double clocktime);// Runs the simulation
-		void initializeSimulation();	// Set up the simulation
-		void PrintCurrentTime();
-		void PrintStartTime();
-		City* testCity;// = new City(char(0), char(0), char(0), 0, 0);
-		Flight* testFlight;// = new Flight(char(0), char(0), 0, char(0), 0, 0, char(0));
-		Aircraft* testAircraft;// = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
+public:
+	Simulation(); 					// Default constructor
+	~Simulation(); 					// Destructor
+	double getFlightETA();			// Todo: what does this return
+	void printReport();				// Prints report to terminal and output file
+	void runSimulation(double clocktime);// Runs the simulation
+	void initializeSimulation();	// Set up the simulation
+	void PrintCurrentTime();
+	void PrintStartTime();
+	City* testCity;// = new City(char(0), char(0), char(0), 0, 0);
+	Flight* testFlight;// = new Flight(char(0), char(0), 0, char(0), 0, 0, char(0));
+	Aircraft* testAircraft;// = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
+
 
 	// Set functions
 	void setClockMult(int param);

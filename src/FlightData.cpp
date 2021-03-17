@@ -22,10 +22,10 @@ Flight::~Flight()
 {
 }
 
-void Flight::readData()
+void Flight::readData(char* infile)
 {
 	FlightDataParser* ParseFlight = new FlightDataParser();
-	ParseFlight->InitFlightData("../AirlineFlightData01.xml");
+	ParseFlight->InitFlightData(infile);
 	const int FlightCount = ParseFlight->getFlightCount();
 	vector<Flight> FlightList;
 	for (int i = 0; i < FlightCount; i++)

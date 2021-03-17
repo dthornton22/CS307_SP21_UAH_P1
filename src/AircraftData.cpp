@@ -21,10 +21,10 @@ Aircraft::~Aircraft()
 {
 }
 
-void Aircraft::readData()
+void Aircraft::readData(char* infile)
 {
 	FlightDataParser* ParseAircraft = new FlightDataParser();
-	ParseAircraft->InitFlightData("AirlineFlightData01.xml");
+	ParseAircraft->InitFlightData(infile);
 	int AircraftCount = ParseAircraft->getAircraftCount();
 	vector<Aircraft> AircraftList;
 	for (int i = 0; i < AircraftCount; i++)

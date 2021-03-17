@@ -27,7 +27,7 @@ private:
 public:
 	City(char name, char state, char symbol, double lat, double lon); // Default constructor
 	~City(); 							// Destructor
-	void readData();					//
+	void readData(char* infile);					//
 	double calcDistance(char dep, char arr);	//
 
 	// Set functions

@@ -5,30 +5,13 @@
 // Course: CS-307
 // Due Date: 03/16/2021
 // ****************************************
+#pragma warning(disable : 4996)
+
 #include "Simulation.h"
 
 Simulation::Simulation()
 {
-	printf("==============================================================\n");
-	printf("|          AIRLINE FLIGHT SIMULATION DEMONSTRATION           |\n");
-	printf("|            CS 307 -- Programming Assignment 1              |\n");
-	printf("==============================================================\n");
-	printf("\nPlease enter the name of the simulation data file\n");
-	getline(cin, inputFile);
-	char* inFileCharArray = &inputFile[0];
-	FILE* filepoint;
 
-	if ((fopen_s(&filepoint, inFileCharArray, "r")) != 0)
-	{
-		cout << "Cannot open file " << inputFile << endl;
-		cout << "Exiting program now..." << endl;
-		exit(1);
-	}
-	else
-	{
-		cout << "Successfully opened file " << inputFile << endl;
-		cout << "Initializing simulation..." << endl;
-	}
 }
 
 Simulation::~Simulation()
@@ -42,13 +25,12 @@ double Simulation::getFlightETA()
 
 void Simulation::printReport()
 {
-	//testFlight->PrintDeparture(07, 44);
-	//testFlight->PrintArrival(07, 35);
+	
 }
 
 void Simulation::PrintCurrentTime()
 {
-	if (CurrentHr <= 9 && CurrentMin <= 9) { printf("Current clock time: %0d:0%d\n", CurrentHr, CurrentMin); }		// ex 07:00
+	if (CurrentHr <= 9 && CurrentMin <= 9) { printf("Current clock time: %0d:0%d\n", CurrentHr, CurrentMin); }	   // ex 07:00
 	else if (CurrentHr <= 9 && CurrentMin >= 10) { printf("Current clock time: %0d:%d\n", CurrentHr, CurrentMin); }// ex 07:10
 	else if (CurrentHr >= 10 && CurrentMin <= 9) { printf("Current clock time: %d:0%d\n", CurrentHr, CurrentMin); }// ex 10:00
 	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin); }// ex 10:11
@@ -62,13 +44,73 @@ void Simulation::PrintStartTime()
 	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("*** Starting simulation at %d:%d ***\n", CurrentHr, CurrentMin); }// ex 10:11
 }
 
+void Simulation::initializeSimulation()
+{
+	printf("==============================================================\n");
+	printf("|          AIRLINE FLIGHT SIMULATION DEMONSTRATION           |\n");
+	printf("|            CS 307 -- Programming Assignment 1              |\n");
+	printf("==============================================================\n");
+	printf("\nPlease enter the name of the simulation data file\n");
+	getline(cin, inputFile); // default is ../FlightSim01.txt
+	char* inFileCharArray = &inputFile[0];
+	ifstream userInFile(inFileCharArray);
+	string cityFile, flightFile;
+	char mycityfile[32];
+	char myflightfile[32];
+	if (!userInFile)
+	{
+		cout << "Cannot open file " << inputFile << endl;
+		cout << "Exiting program now..." << endl;
+		exit(1);
+	}
+	else
+	{
+		cout << "Successfully opened file " << inputFile << endl;
+		getline(userInFile, cityFile);
+		getline(userInFile, flightFile);
+		cout << "Opening City data file " << cityFile << "..." << endl;
+		cout << "Opening Airline/Flight data file " << flightFile << "..." << endl;
+
+		string temp1 = "../" + cityFile;
+		string temp2 = "../" + flightFile;
+		strcpy(mycityfile, temp1.c_str());
+		strcpy(myflightfile, temp2.c_str());
+
+		cout << "Initializing simulation..." << endl;
+	}
+	printf("\nWhat speed do you want to run the simulation? (1, 2, or 3)\n");
+	cin >> clockMult;
+	if (clockMult > 3 || clockMult < 1)
+	{
+		cout << "Error!! Invalid simulation speed" << endl;
+		cout << "Exiting program now..." << endl;
+		exit(2);
+	}
+
+	// Start with default values
+	testCity = new City(char(0), char(0), char(0), 0, 0);
+	testFlight = new Flight(char(0), char(0), 0, char(0), 0, 0, char(0));
+	testAircraft = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
+
+	// Then read in the data
+
+	testCity->readData(mycityfile);
+	testFlight->readData(myflightfile);
+	testAircraft->readData(myflightfile);
+
+	// Get start time
+	CurrentHr = testFlight->getStartHr();
+	CurrentMin = testFlight->getStartMin();
+	PrintStartTime();
+}
+
 void Simulation::runSimulation(double clocktime)
 {
 	_ftime_s(&tStruct);	// Get start time
 	thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
 	outputTime = thisTime + 1.0 / clocktime; // Set next 1 second interval time (we could add, e.g., .5 to delay just a half second)
 
-	while (1)     // Start an eternal loop
+	while (1)     // Start an infinite loop
 	{
 		_ftime_s(&tStruct);    // Get the current time
 		thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
@@ -98,7 +140,7 @@ void Simulation::runSimulation(double clocktime)
 			}
 
 			// Need to write get functions for the arrival times
-			//if (CurrentHr == testFlight->getArriveHr() && CurrentMin == testFlight->getArrivalMin())	
+			//if (CurrentHr == testFlight->getArriveHr() && CurrentMin == testFlight->getArrivalMin())
 			//{
 			//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 			//	testFlight->PrintArrival(CurrentMin, CurrentHr);
@@ -118,24 +160,6 @@ void Simulation::runSimulation(double clocktime)
 		}
 		// Do other stuff here
 	}
-}
-
-void Simulation::initializeSimulation()
-{
-	printf("\nWhat speed do you want to run the simulation? (1, 2, or 3)\n");
-	cin >> clockMult;
-	// Start with default values
-	testCity = new City(char(0), char(0), char(0), 0, 0);
-	testFlight = new Flight(char(0), char(0), 0, char(0), 0, 0, char(0));
-	testAircraft = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
-	// Then read in the data
-	testCity->readData();
-	testFlight->readData();
-	testAircraft->readData();
-	// Get start time
-	CurrentHr = testFlight->getStartHr();
-	CurrentMin = testFlight->getStartMin();
-	PrintStartTime();
 }
 
 void Simulation::setClockMult(int param)
