@@ -42,7 +42,7 @@ double Simulation::getFlightETA()
 
 void Simulation::printReport()
 {
-	testFlight->PrintDeparture(07, 44);
+	//testFlight->PrintDeparture(07, 44);
 	//testFlight->PrintArrival(07, 35);
 }
 
@@ -52,7 +52,7 @@ void Simulation::runSimulation(double clocktime)
 	thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
 	outputTime = thisTime + 1.0/clocktime; // Set next 1 second interval time (we could add, e.g., .5 to delay just a half second)
 
-	while (!done)     // Start an eternal loop
+	while (1)     // Start an eternal loop
 	{
 		_ftime_s(&tStruct);    // Get the current time
 		thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double

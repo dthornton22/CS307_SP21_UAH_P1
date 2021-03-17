@@ -12,5 +12,5 @@ int main(int argc, char* argv[])
 {
 	Simulation mySim; 	            // Instantiate Simulation object
 	mySim.initializeSimulation();   // Call Simulation::initializeSimulation
-	mySim.runSimulation();          // Call Simulation::runSimulation
+	mySim.runSimulation(mySim.getClockMult());          // Call Simulation::runSimulation
 }
