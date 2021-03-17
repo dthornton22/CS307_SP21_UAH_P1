@@ -6,10 +6,15 @@
 // Due Date: 03/16/2021
 // ****************************************
 #include "AircraftData.h"
-Aircraft::Aircraft(char make, char desc, double roc, double wngs, double len, double cs, double ca)
+Aircraft::Aircraft()
 {
-	this->setMake(make);
-	this->setModel(desc);
+
+}
+
+Aircraft::Aircraft(char *planemake, char *desc, double roc, double wngs, double len, double cs, double ca)
+{
+	strcpy(make, planemake);
+	strcpy(model, desc);
 	this->cruiseSpeed = cs;
 	this->cruiseAltitude = ca;
 	this->climbSpeed = roc;
@@ -30,7 +35,7 @@ void Aircraft::readData(char* infile)
 	for (int i = 0; i < AircraftCount; i++)
 	{
 		ParseAircraft->getAircraftData(make, model, &climbSpeed, &wingspan, &fuselageLength, &cruiseSpeed, &cruiseAltitude);
-		Aircraft NewAircraft(*make, *model, climbSpeed, wingspan, fuselageLength, cruiseSpeed, cruiseAltitude);
+		Aircraft NewAircraft(make, model, climbSpeed, wingspan, fuselageLength, cruiseSpeed, cruiseAltitude);
 		AircraftList.push_back(NewAircraft);
 	}
 }

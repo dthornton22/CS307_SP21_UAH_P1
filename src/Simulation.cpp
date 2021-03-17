@@ -86,7 +86,7 @@ void Simulation::initializeSimulation()
 	// Start with default values
 	testCity = new City();
 	testFlight = new Flight();
-	testAircraft = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
+	testAircraft = new Aircraft();
 
 	// Then read in the data
 
@@ -117,7 +117,6 @@ void Simulation::runSimulation(double clocktime)
 			Counter += 1;
 			
 			vector<Flight> Data = testFlight->ReturnFlightVector();
-			vector<City> CityVector = testCity->ReturnCityVector();
 			// Output a new flight.
 			for (auto &it : Data)
 			{
@@ -142,7 +141,7 @@ void Simulation::runSimulation(double clocktime)
 				printf("================================================================\n");
 				for (auto &all : InAir)
 				{
-					testFlight->PrintAllData(all, CurrentHr, CurrentMin);
+					//testFlight->PrintAllData(all, CurrentHr, CurrentMin);
 				}
 				PrintCurrentTime();
 				printf("================================================================\n");

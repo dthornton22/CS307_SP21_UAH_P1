@@ -27,7 +27,8 @@ private:
 	double fuselageLength{ 0 };
 
 public:
-	Aircraft(char make, char desc, double roc, double wngs, double len, double cs, double ca);
+	Aircraft();
+	Aircraft(char *make, char *desc, double roc, double wngs, double len, double cs, double ca);
 	~Aircraft();
 	void readData(char* infile);
 

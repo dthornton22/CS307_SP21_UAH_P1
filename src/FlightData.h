@@ -8,6 +8,7 @@
 #include "FlightDataParser.h"
 #include "CityDataParser.h"
 #include "CityData.h"
+#include "AircraftData.h"
 #include <cstdlib>
 #include <fstream>
 #include <vector>
@@ -54,7 +55,7 @@ public:
 	void setArriveCity(char param);
 	void PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin);
 	void PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin);
-	void PrintAllData(Flight F, int CurrentHr, int CurrentMin);
+	void PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin);
 
 	// Get functions
 	int getFlightNumber();

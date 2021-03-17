@@ -48,8 +48,9 @@ vector<Flight> Flight::ReturnFlightVector()
 	return this->FlightList;
 }
 
-void Flight::PrintAllData(Flight F, int CurrentHr, int CurrentMin)
+void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin)
 {
+
 	printf("%s Flight %d - %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
 	//printf("        Departs: %s (%f, %f) at %d:%d\n", DepSymbol, Lat, Lon, LocTimeHr, LocTimeMin); // char // double // double // int // int
 	//printf("        Arrives: %s (%f, %f) at %d:%d\n", DstSymbol, Lat, Lon, DstTimeHr, DstTimeMin); // char // double // double // int // int
@@ -57,39 +58,39 @@ void Flight::PrintAllData(Flight F, int CurrentHr, int CurrentMin)
 	//printf("                  %f miles from %s, %f miles to %s", DepDistance, DepSymbol, DstDistance, DstSymbol); // double // char // double // char
 	//printf("        Current Speed: %f MPH\n", CurrentSpeed);
 	//printf("        Current Altitude: %f feet\n", CurrentAltitude);
+
+	
 }
 
 void Flight::PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin)
 {
 	printf("now departing: %s flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
-	cout << F.getArriveCity();
-	vector<City> temp = C.ReturnCityVector();
+	vector<City> Arrival = C.ReturnCityVector();
+	vector<City> Departure = C.ReturnCityVector();
 	char tempDepCity[128] = {}; char tempArrCity[128] = {};
 	char tempDepStat[128] = {}; char tempArrStat[128] = {};
-	for (auto &it : temp)
+
+	for (auto &it : Departure)
 	{
 		if (strcmp(it.getSymbol(), F.getDepartCity()))	// if the symbol is equal to the departure city symbol
 		{
 			strcpy(tempDepCity, it.getName());
 			strcpy(tempDepStat, it.getState());
+			printf("                 from %s, %s\n", tempDepCity, tempDepStat); // HSV -> Alabama
 			break;
 		}
 	}
-	for (auto &it : temp)
+
+	for (auto &it : Arrival)
 	{
 		if (strcmp(it.getSymbol(), F.getArriveCity()))
 		{
 			strcpy(tempArrCity, it.getName());
 			strcpy(tempArrStat, it.getState());
+			printf("                 en route to %s, %s\n", tempArrCity, tempArrStat);
 			break;
 		}
 	}
-	printf("                 from %s, %s\n", tempDepCity, tempDepStat); // HSV -> Alabama
-	printf("                 en route to %s, %s\n", tempArrCity, tempArrStat);
-
-	//printf("                 from %s, %s\n", F.getDepartCity(), C.ReturnState(F.getDepartCity())); // HSV -> Alabama
-	//printf("                 en route to %s, %s\n", F.getArriveCity(), C.ReturnState(F.getArriveCity()));
-	//printf("                 estimated time of arrival: %d:%d", "call", "time calculation\n");
 }
 
 void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
@@ -178,3 +179,26 @@ int Flight::getStartHr()
 {
 	return this->StartHr;
 }
+
+
+
+//for (int i = 0; i < sizeof(Arrival); i++)
+//{
+//	if (strcmp(Arrival[i].getSymbol(), F.getDepartCity()))
+//	{
+//		strcpy(tempDepCity, Arrival[i].getName());
+//		strcpy(tempDepStat, Arrival[i].getState());
+//		printf("                 from %s, %s\n", tempDepCity, tempDepStat); // HSV -> Alabama
+//		break;
+//	}
+//}
+//for (int i = 0; i < sizeof(Arrival); i++)
+//{
+//	if (strcmp(Arrival[i].getSymbol(), F.getArriveCity()))
+//	{
+//		strcpy(tempArrCity, Arrival[i].getName());
+//		strcpy(tempArrStat, Arrival[i].getState());
+//		printf("                 en route to %s, %s\n", tempArrCity, tempArrStat);
+//		break;
+//	}
+//}
