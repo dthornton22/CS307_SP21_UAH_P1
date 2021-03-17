@@ -27,10 +27,10 @@ private:
 
 public:
 	City();
-	City(char* name, char* state, char* symbol, double lat, double lon); // Default constructor
-	~City(); 							// Destructor
-	void readData(char* infile);					//
-	double calcDistance(char dep, char arr);	//
+	City(char* name, char* state, char* symbol, double lat, double lon);
+	~City();
+	void readData(char* infile);
+	double calcDistance(char dep, char arr);
 
 	// Set functions
 	void setName(char param);

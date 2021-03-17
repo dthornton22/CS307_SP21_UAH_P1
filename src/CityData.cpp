@@ -57,6 +57,7 @@ char* City::ReturnState(char* CityName)
 			return CityName;
 		}
 	}
+	return CityName;
 }
 
 double City::calcDistance(char depCity, char arrCity)

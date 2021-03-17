@@ -35,7 +35,7 @@ public:
 	Simulation();
 	~Simulation();
 	double getFlightETA();
-	void runSimulation(double clocktime);	// Runs the simulation
+	void runSimulation(double clocktime);
 	void initializeSimulation();
 	void PrintCurrentTime();
 	void PrintStartTime();

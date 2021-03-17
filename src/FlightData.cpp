@@ -50,7 +50,7 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 {
 	vector<Aircraft> AircraftData = A.ReturnAircraftList();
 	vector<City> CityData = C.ReturnCityVector();
-	double tempLat; double tempLon;
+	//double tempLat; double tempLon;
 	printf("%s Flight %d - %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
 	for (auto& it : CityData)
 	{
@@ -108,9 +108,10 @@ void Flight::PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin)
 
 void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 {
-	//printf("Now arriving: %s Flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
-	//printf("\t\tat %s, %s\n", F.getArriveCity(), *C.ReturnState(F.getArriveCity()));
-	//printf("\t\tfrom %s, %s\n", F.getDepartCity(), *C.ReturnState(F.getDepartCity()));
+	// Getting warnings here
+	printf("Now arriving: %s Flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
+	printf("\t\tat %s, %s\n", F.getArriveCity(), *C.ReturnState(F.getArriveCity()));
+	printf("\t\tfrom %s, %s\n", F.getDepartCity(), *C.ReturnState(F.getDepartCity()));
 }
 
 void Flight::setFlightNumber(int param)

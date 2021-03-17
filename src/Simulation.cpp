@@ -88,7 +88,6 @@ void Simulation::initializeSimulation()
 	testAircraft = new Aircraft();
 
 	// Then read in the data
-
 	testCity->readData(myCityFile);
 	testFlight->readData(myFlightFile);
 	testAircraft->readData(myFlightFile);
@@ -133,7 +132,6 @@ void Simulation::runSimulation(double clocktime)
 
 			// Output a new flight.
 			for (auto& it : Flights)
-
 			{
 				int tempHr = it.getDepartHour();
 				int tempMin = it.getDepartMin();
@@ -163,15 +161,15 @@ void Simulation::runSimulation(double clocktime)
 			}
 
 			// Output arriving flights.
-
+			// Need to remove flights from "in flight" list once they arrive
 			// Need to write get functions for the arrival times
-			//if (CurrentHr == testFlight->getArriveHr() && CurrentMin == testFlight->getArrivalMin())
-			//{
-			//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-			//	testFlight->PrintArrival(CurrentMin, CurrentHr);
-			//	PrintCurrentTime();
-			//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-			//}
+			if (CurrentHr == testFlight->getStartHr() && CurrentMin == testFlight->getStartMin())
+			{
+				printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+				testFlight->PrintArrival(Temp, *testFlight, CurrentMin, CurrentHr);
+				PrintCurrentTime();
+				printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+			}
 		}
 	}
 }

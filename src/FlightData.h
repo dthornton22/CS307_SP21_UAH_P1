@@ -39,9 +39,12 @@ private:
 public:
 	Flight();
 	Flight(char* airline, char* plane, int flNum, char* departCity, int depHr, int depMin, char* destCity);
-	~Flight(); 							// Destructor
-	void readData(char* infile);					//
+	~Flight();
+	void readData(char* infile);
 	vector<Flight> ReturnFlightVector();
+	void PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin);
+	void PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin);
+	void PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin);
 
 	// Set functions
 	void setFlightNumber(int param);
@@ -51,9 +54,6 @@ public:
 	void setAircraftType(char param);
 	void setDepartCity(char param);
 	void setArriveCity(char param);
-	void PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin);
-	void PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin);
-	void PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin);
 
 	// Get functions
 	int getFlightNumber();
