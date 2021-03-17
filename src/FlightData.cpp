@@ -51,12 +51,12 @@ vector<Flight> Flight::ReturnFlightVector()
 void Flight::PrintAllData(Flight F, int CurrentHr, int CurrentMin)
 {
 	printf("%s Flight %d - %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
-	//printf("        Departs: %s (%f, %f) at %d:%d\n", DepSymbol, Lat, Lon, LocTimeHr, LocTimeMin); // char // double // double // int // int
-	//printf("        Arrives: %s (%f, %f) at %d:%d\n", DstSymbol, Lat, Lon, DstTimeHr, DstTimeMin); // char // double // double // int // int
-	//printf("        Current location: (%f, %f)\n", CurrentLocLat, CurrentLocLon); // double // double
-	//printf("                  %f miles from %s, %f miles to %s", DepDistance, DepSymbol, DstDistance, DstSymbol); // double // char // double // char
-	//printf("        Current Speed: %f MPH\n", CurrentSpeed);
-	//printf("        Current Altitude: %f feet\n", CurrentAltitude);
+	//printf("\t\tDeparts: %s (%f, %f) at %d:%d\n", DepSymbol, Lat, Lon, LocTimeHr, LocTimeMin); // char // double // double // int // int
+	//printf("\t\tArrives: %s (%f, %f) at %d:%d\n", DstSymbol, Lat, Lon, DstTimeHr, DstTimeMin); // char // double // double // int // int
+	//printf("\t\tCurrent location: (%f, %f)\n", CurrentLocLat, CurrentLocLon); // double // double
+	//printf("\t\t\t\t%f miles from %s, %f miles to %s", DepDistance, DepSymbol, DstDistance, DstSymbol); // double // char // double // char
+	//printf("\t\tCurrent Speed: %f MPH\n", CurrentSpeed);
+	//printf("\t\tCurrent Altitude: %f feet\n", CurrentAltitude);
 }
 
 void Flight::PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin)
@@ -84,19 +84,19 @@ void Flight::PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin)
 			break;
 		}
 	}
-	printf("                 from %s, %s\n", tempDepCity, tempDepStat); // HSV -> Alabama
-	printf("                 en route to %s, %s\n", tempArrCity, tempArrStat);
+	printf("\t\tfrom %s, %s\n", tempDepCity, tempDepStat); // HSV -> Alabama
+	printf("\t\ten route to %s, %s\n", tempArrCity, tempArrStat);
 
-	//printf("                 from %s, %s\n", F.getDepartCity(), C.ReturnState(F.getDepartCity())); // HSV -> Alabama
-	//printf("                 en route to %s, %s\n", F.getArriveCity(), C.ReturnState(F.getArriveCity()));
-	//printf("                 estimated time of arrival: %d:%d", "call", "time calculation\n");
+	//printf("\t\tfrom %s, %s\n", F.getDepartCity(), C.ReturnState(F.getDepartCity())); // HSV -> Alabama
+	//printf("\t\ten route to %s, %s\n", F.getArriveCity(), C.ReturnState(F.getArriveCity()));
+	//printf("\t\testimated time of arrival: %d:%d", "call", "time calculation\n");
 }
 
 void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 {
 	//printf("Now arriving: %s Flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
-	//printf("                 at %s, %s\n", F.getArriveCity(), *C.ReturnState(F.getArriveCity()));
-	//printf("                 from %s, %s\n", F.getDepartCity(), *C.ReturnState(F.getDepartCity()));
+	//printf("\t\tat %s, %s\n", F.getArriveCity(), *C.ReturnState(F.getArriveCity()));
+	//printf("\t\tfrom %s, %s\n", F.getDepartCity(), *C.ReturnState(F.getDepartCity()));
 }
 
 void Flight::setFlightNumber(int param)
