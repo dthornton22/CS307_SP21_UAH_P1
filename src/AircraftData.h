@@ -43,8 +43,8 @@ public:
 	void setFuselageLength(double param);
 
 	// Get functions
-	char getMake();
-	char getModel();
+	char* getMake();
+	char* getModel();
 	double getCruiseSpeed();
 	double getCruiseAltitude();
 	double getClimbSpeed();

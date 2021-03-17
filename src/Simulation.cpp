@@ -114,6 +114,11 @@ void Simulation::runSimulation(double clocktime)
 		{
 			CurrentMin += 1;
 			Counter += 1;
+
+			vector<Flight> Flights = testFlight->ReturnFlightVector();
+			vector<Aircraft> Airplanes = testAircraft->ReturnAircraftList();
+			vector<City> Cities = testCity->ReturnCityVector();
+			City Temp;
 			// Increment time.
 			if (CurrentMin >= 60)		// Check for minute overflow
 			{
@@ -126,13 +131,13 @@ void Simulation::runSimulation(double clocktime)
 			}
 			outputTime += 1.0 / clocktime; // Set time for next 1 second interval
 
-			vector<Flight> Data = testFlight->ReturnFlightVector();
 			// Output a new flight.
 			for (auto& it : Data)
+
 			{
 				int tempHr = it.getDepartHour();
 				int tempMin = it.getDepartMin();
-				if (CurrentHr == tempHr && CurrentMin == tempMin)
+				if (CurrentHr == tempHr && CurrentMin == tempMin)	// Find the time
 				{
 					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 					testFlight->PrintDeparture(*testCity, it, CurrentMin, CurrentHr);
@@ -151,7 +156,7 @@ void Simulation::runSimulation(double clocktime)
 				printf("================================================================\n");
 				for (auto& all : InAir)
 				{
-					//testFlight->PrintAllData(all, CurrentHr, CurrentMin);
+					testFlight->PrintAllData(*testAircraft, *testCity, all, CurrentHr, CurrentMin);
 				}
 				PrintCurrentTime();
 				printf("================================================================\n");
