@@ -36,29 +36,29 @@ public:
 	void printDeparture(int CurrentHr, int CurrentMin);
 	void printArrival(int CurrentHr, int CurrentMin);
 
-		// Set functions
-		void setFlightNumber(int param);
-		void setDepartTimeMin(int param);
-		void setDepartTimeHr(int param);
-		void setAirline(char param);
-		void setAircraftType(char param);
-		void setDepartCity(char param);
-		void setArriveCity(char param);
-		void PrintDeparture(int CurrentHr, int CurrentMin);
-		void PrintArrival(int CurrentHr, int CurrentMin);
-		void PrintData();
-		void PrintAllData(int CurrentHr, int CurrentMin);
+	// Set functions
+	void setFlightNumber(int param);
+	void setDepartTimeMin(int param);
+	void setDepartTimeHr(int param);
+	void setAirline(char param);
+	void setAircraftType(char param);
+	void setDepartCity(char param);
+	void setArriveCity(char param);
+	void PrintDeparture(int CurrentHr, int CurrentMin);
+	void PrintArrival(int CurrentHr, int CurrentMin);
+	void PrintData();
+	void PrintAllData(int CurrentHr, int CurrentMin);
 
-		// Get functions
-		int getFlightNumber();
-		int getDepartMin();
-		int getDepartHour();
-		int getStartHr();
-		int getStartMin();
-		char* getAirline();
-		char* getAircraftType();
-		char* getDepartCity();
-		char* getArriveCity();
+	// Get functions
+	int getFlightNumber();
+	int getDepartMin();
+	int getDepartHour();
+	int getStartHr();
+	int getStartMin();
+	char* getAirline();
+	char* getAircraftType();
+	char* getDepartCity();
+	char* getArriveCity();
 };
 
 #endif

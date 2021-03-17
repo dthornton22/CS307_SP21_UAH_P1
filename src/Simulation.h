@@ -22,8 +22,8 @@ using namespace std;
 class Simulation
 {
 private:
-	int clockMult{0};
-	int Counter{0};
+	int clockMult{ 0 };
+	int Counter{ 0 };
 	int CurrentMin{ 0 };
 	int	CurrentHr{ 0 };
 	string inputFile;
@@ -43,7 +43,6 @@ public:
 	City* testCity;// = new City(char(0), char(0), char(0), 0, 0);
 	Flight* testFlight;// = new Flight(char(0), char(0), 0, char(0), 0, 0, char(0));
 	Aircraft* testAircraft;// = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
-
 
 	// Set functions
 	void setClockMult(int param);

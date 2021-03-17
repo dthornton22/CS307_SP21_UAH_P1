@@ -11,7 +11,6 @@
 
 Simulation::Simulation()
 {
-
 }
 
 Simulation::~Simulation()
@@ -25,7 +24,6 @@ double Simulation::getFlightETA()
 
 void Simulation::printReport()
 {
-	
 }
 
 void Simulation::PrintCurrentTime()
