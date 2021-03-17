@@ -167,18 +167,6 @@ void Simulation::runSimulation(double clocktime)
 			//	PrintCurrentTime();
 			//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 			//}
-
-			// Increment time.
-			if (CurrentMin >= 60)		// Check for minute overflow
-			{
-				CurrentHr += 1;
-				if (CurrentHr == 13)	// Check for hour overflow
-				{
-					CurrentHr = 1;
-				}
-				CurrentMin = 0;
-			}
-			outputTime += 1.0 / clocktime; // Set time for next 1 second interval
 		}
 	}
 }
