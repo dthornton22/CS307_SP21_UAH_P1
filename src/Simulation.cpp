@@ -105,7 +105,7 @@ void Simulation::runSimulation(double clocktime)
 	_ftime_s(&tStruct);	// Get start time
 	thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
 	outputTime = thisTime + 1.0 / clocktime; // Set next 1 second interval time (we could add, e.g., .5 to delay just a half second)
-
+	vector<Flight> InAir;
 	while (1)     // Start an infinite loop
 	{
 		_ftime_s(&tStruct);    // Get the current time
@@ -118,6 +118,7 @@ void Simulation::runSimulation(double clocktime)
 			
 			vector<Flight> Data = testFlight->ReturnFlightVector();
 
+			// Output a new flight.
 			for (auto &it : Data)
 			{
 				int tempHr = it.getDepartHour();
@@ -128,21 +129,27 @@ void Simulation::runSimulation(double clocktime)
 					testFlight->PrintDeparture(it, CurrentMin, CurrentHr);
 					PrintCurrentTime();
 					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-					// increment the list for the next flight.
+					Flight NewInAir(it.getAirline(), it.getAircraftType(), it.getFlightNumber(), it.getDepartCity(), it.getDepartHour(), it.getDepartMin(), it.getArriveCity());
+					InAir.push_back(NewInAir);
 				}
-
 			}
 
-
+			// Output all current flights. 
 			if ((Counter % 5) == 0)
 			{
 				printf("================================================================\n");
 				printf("|  Flight Simulation - Status reports on all flights enroute.  |\n");
 				printf("================================================================\n");
-				testFlight->PrintAllData(CurrentHr, CurrentMin);
+				for (auto &all : InAir)
+				{
+					testFlight->PrintAllData(all, CurrentHr, CurrentMin);
+				}
 				PrintCurrentTime();
 				printf("================================================================\n");
 			}
+
+
+			// Output arriving flights.
 
 			// Need to write get functions for the arrival times
 			//if (CurrentHr == testFlight->getArriveHr() && CurrentMin == testFlight->getArrivalMin())
@@ -152,6 +159,8 @@ void Simulation::runSimulation(double clocktime)
 			//	PrintCurrentTime();
 			//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 			//}
+
+			// Increment time.
 			if (CurrentMin >= 60)		// Check for minute overflow
 			{
 				CurrentHr += 1;
@@ -163,7 +172,6 @@ void Simulation::runSimulation(double clocktime)
 			}
 			outputTime += 1.0 / clocktime; // Set time for next 1 second interval
 		}
-		// Do other stuff here
 	}
 }
 

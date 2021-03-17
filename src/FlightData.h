@@ -53,7 +53,7 @@ public:
 	void setArriveCity(char param);
 	void PrintDeparture(Flight F, int CurrentHr, int CurrentMin);
 	void PrintArrival(int CurrentHr, int CurrentMin);
-	void PrintAllData(int CurrentHr, int CurrentMin);
+	void PrintAllData(Flight F, int CurrentHr, int CurrentMin);
 
 	// Get functions
 	int getFlightNumber();

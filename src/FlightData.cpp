@@ -48,9 +48,9 @@ vector<Flight> Flight::ReturnFlightVector()
 	return this->FlightList;
 }
 
-void Flight::PrintAllData(int CurrentHr, int CurrentMin)
+void Flight::PrintAllData(Flight F, int CurrentHr, int CurrentMin)
 {
-	//printf("%s Flight %d - %s\n", Airline, FlightNum, Plane);
+	printf("%s Flight %d - %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
 	//printf("        Departs: %s (%f, %f) at %d:%d\n", DepSymbol, Lat, Lon, LocTimeHr, LocTimeMin); // char // double // double // int // int
 	//printf("        Arrives: %s (%f, %f) at %d:%d\n", DstSymbol, Lat, Lon, DstTimeHr, DstTimeMin); // char // double // double // int // int
 	//printf("        Current location: (%f, %f)\n", CurrentLocLat, CurrentLocLon); // double // double
