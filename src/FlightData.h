@@ -30,9 +30,9 @@ private:
 	int StartHr{ 0 };
 
 public:
-	Flight(char airline, char plane, int flNum, char departCity, int depHr, int depMin, char destCity); // Default constructor
-	~Flight(); 							// Destructor
-	void readData(char* infile);					//
+	Flight(char airline, char plane, int flNum, char departCity, int depHr, int depMin, char destCity);
+	~Flight();
+	void readData(char* infile);
 	void printDeparture(int CurrentHr, int CurrentMin);
 	void printArrival(int CurrentHr, int CurrentMin);
 
@@ -46,7 +46,6 @@ public:
 	void setArriveCity(char param);
 	void PrintDeparture(int CurrentHr, int CurrentMin);
 	void PrintArrival(int CurrentHr, int CurrentMin);
-	void PrintData();
 	void PrintAllData(int CurrentHr, int CurrentMin);
 
 	// Get functions

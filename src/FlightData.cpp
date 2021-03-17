@@ -33,14 +33,8 @@ void Flight::readData(char* infile)
 		ParseFlight->getFlightData(airline, aircraftType, &flightNumber, departCity, &departTimeHr, &departTimeMin, arriveCity);
 		Flight* NewFlight = new Flight(*airline, *aircraftType, flightNumber, *departCity, departTimeHr, departTimeMin, *arriveCity);
 		FlightList.push_back(*NewFlight);
-		PrintData();
 	}
 	ParseFlight->getStartTime(&StartHr, &StartMin);
-}
-
-void Flight::PrintData()
-{
-	cout << "Airline: " << this->getAircraftType() << endl;
 }
 
 void Flight::PrintAllData(int CurrentHr, int CurrentMin)
