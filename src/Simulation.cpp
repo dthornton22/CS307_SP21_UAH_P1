@@ -132,7 +132,7 @@ void Simulation::runSimulation(double clocktime)
 			outputTime += 1.0 / clocktime; // Set time for next 1 second interval
 
 			// Output a new flight.
-			for (auto& it : Data)
+			for (auto& it : Flights)
 
 			{
 				int tempHr = it.getDepartHour();
