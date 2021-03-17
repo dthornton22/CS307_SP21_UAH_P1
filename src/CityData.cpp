@@ -47,19 +47,6 @@ vector<City> City::ReturnCityVector()
 	return this->CityList;
 }
 
-char* City::ReturnState(char* CityName)
-{
-	for (auto& it : CityList)
-	{
-		if (CityName == it.getSymbol())
-		{
-			strcpy(CityName, it.getState());
-			return CityName;
-		}
-	}
-	return CityName;
-}
-
 double City::calcDistance(char depCity, char arrCity)
 {
 	return 0;

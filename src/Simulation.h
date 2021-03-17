@@ -34,7 +34,6 @@ private:
 public:
 	Simulation();
 	~Simulation();
-	double getFlightETA();
 	void runSimulation(double clocktime);
 	void initializeSimulation();
 	void PrintCurrentTime();
@@ -46,11 +45,9 @@ public:
 
 	// Set functions
 	void setClockMult(int param);
-	void setInFile(string param);
 
 	// Get functions
 	int getClockMult();
-	string getInFile();
 };
 
 #endif

@@ -39,7 +39,6 @@ public:
 	void setLatitude(double param);
 	void setLongitude(double param);
 	vector<City> ReturnCityVector();
-	char* ReturnState(char* CityName);
 
 	// Get functions
 	char* getName();
