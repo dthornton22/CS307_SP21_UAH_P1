@@ -87,7 +87,7 @@ void Simulation::initializeSimulation()
 
 	// Start with default values
 	testCity = new City(char(0), char(0), char(0), 0, 0);
-	testFlight = new Flight(char(0), char(0), 0, char(0), 0, 0, char(0));
+	testFlight = new Flight();
 	testAircraft = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
 
 	// Then read in the data
@@ -117,15 +117,24 @@ void Simulation::runSimulation(double clocktime)
 		{
 			CurrentMin += 1;
 			Counter += 1;
-			if (CurrentMin == testFlight->getDepartMin() && CurrentHr == testFlight->getDepartHour())
-			{
-				printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-				testFlight->PrintDeparture(CurrentMin, CurrentHr);
-				PrintCurrentTime();
-				printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+			
+			vector<Flight> Data = testFlight->ReturnFlightVector();
 
-				// increment the list for the next flight.
+			for (auto &it : Data)
+			{
+				int tempHr = it.getDepartHour();
+				int tempMin = it.getDepartMin();
+				if (CurrentHr == tempHr && CurrentMin == tempMin)
+				{
+					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+					testFlight->PrintDeparture(it, CurrentMin, CurrentHr);
+					PrintCurrentTime();
+					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+					// increment the list for the next flight.
+				}
+
 			}
+
 
 			if ((Counter % 5) == 0)
 			{

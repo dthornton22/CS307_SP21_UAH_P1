@@ -116,7 +116,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -158,11 +158,11 @@
     <ClInclude Include="..\Simulation.h" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\Data\AirlineFlightData01.xml" />
-    <Xml Include="..\Data\CityData01.xml" />
+    <Xml Include="..\AirlineFlightData01.xml" />
+    <Xml Include="..\CityData01.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Data\FlightSim01.txt" />
+    <Text Include="..\FlightSim01.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,10 +7,14 @@
 // ****************************************
 #include "FlightDataParser.h"
 #include "CityDataParser.h"
+#include <cstdlib>
 #include <fstream>
 #include <vector>
 #include <string>
 #include <iostream>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #ifndef FLIGHTDATA_H
 #define FLIGHTDATA_H
 
@@ -28,13 +32,15 @@ private:
 	char arriveCity[128];
 	int StartMin{ 0 };
 	int StartHr{ 0 };
+	vector<Flight> FlightList;
+
 
 public:
-	Flight(char airline, char plane, int flNum, char departCity, int depHr, int depMin, char destCity); // Default constructor
+	Flight();
+	Flight(char *airline, char *plane, int flNum, char *departCity, int depHr, int depMin, char *destCity);
 	~Flight(); 							// Destructor
 	void readData(char* infile);					//
-	void printDeparture(int CurrentHr, int CurrentMin);
-	void printArrival(int CurrentHr, int CurrentMin);
+	vector<Flight> ReturnFlightVector();
 
 	// Set functions
 	void setFlightNumber(int param);
@@ -44,7 +50,7 @@ public:
 	void setAircraftType(char param);
 	void setDepartCity(char param);
 	void setArriveCity(char param);
-	void PrintDeparture(int CurrentHr, int CurrentMin);
+	void PrintDeparture(Flight F, int CurrentHr, int CurrentMin);
 	void PrintArrival(int CurrentHr, int CurrentMin);
 	void PrintData();
 	void PrintAllData(int CurrentHr, int CurrentMin);
