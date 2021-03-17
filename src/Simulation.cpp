@@ -169,7 +169,6 @@ void Simulation::PrintStartTime()
 	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("*** Starting simulation at %d:%d ***\n", CurrentHr, CurrentMin); }// ex 10:11
 }
 
-
 void Simulation::setClockMult(int param)
 {
 	this->clockMult = param;

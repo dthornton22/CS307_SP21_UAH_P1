@@ -109,9 +109,9 @@ void Flight::PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin)
 void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 {
 	// Getting warnings here
-	printf("Now arriving: %s Flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
-	printf("\t\tat %s, %s\n", F.getArriveCity(), *C.ReturnState(F.getArriveCity()));
-	printf("\t\tfrom %s, %s\n", F.getDepartCity(), *C.ReturnState(F.getDepartCity()));
+	// printf("Now arriving: %s Flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
+	// printf("\t\tat %s, %s\n", F.getArriveCity(), *C.ReturnState(F.getArriveCity()));
+	// printf("\t\tfrom %s, %s\n", F.getDepartCity(), *C.ReturnState(F.getDepartCity()));
 }
 
 void Flight::setFlightNumber(int param)

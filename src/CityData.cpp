@@ -29,6 +29,8 @@ void City::readData(char* infile)
 {
 	CityDataParser* ParseCity = new CityDataParser();
 	ParseCity->InitCityData(infile);
+	double* distArray = 0;
+	ParseCity->getDistTable(&distArray);
 	int CityCount = ParseCity->getCityCount();
 	for (int i = 0; i < CityCount; i++)	// iterate through all cities collecting data
 	{
