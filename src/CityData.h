@@ -27,7 +27,7 @@ private:
 
 public:
 	City();
-	City(char *name, char *state, char *symbol, double lat, double lon); // Default constructor
+	City(char* name, char* state, char* symbol, double lat, double lon); // Default constructor
 	~City(); 							// Destructor
 	void readData(char* infile);					//
 	double calcDistance(char dep, char arr);	//
@@ -39,7 +39,7 @@ public:
 	void setLatitude(double param);
 	void setLongitude(double param);
 	vector<City> ReturnCityVector();
-	char* ReturnState(char *CityName);
+	char* ReturnState(char* CityName);
 
 	// Get functions
 	char* getName();

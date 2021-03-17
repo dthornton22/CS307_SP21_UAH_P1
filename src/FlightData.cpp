@@ -10,11 +10,9 @@
 
 Flight::Flight()
 {
-
 }
 
-
-Flight::Flight(char *al, char *plane, int flNum, char *depCity, int depHr, int depMin, char *dstCity)
+Flight::Flight(char* al, char* plane, int flNum, char* depCity, int depHr, int depMin, char* dstCity)
 {
 	strcpy(airline, al);
 	strcpy(aircraftType, plane);
@@ -66,7 +64,7 @@ void Flight::PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin)
 	vector<City> temp = C.ReturnCityVector();
 	char tempDepCity[128] = {}; char tempArrCity[128] = {};
 	char tempDepStat[128] = {}; char tempArrStat[128] = {};
-	for (auto &it : temp)
+	for (auto& it : temp)
 	{
 		if (strcmp(it.getSymbol(), F.getDepartCity()))	// if the symbol is equal to the departure city symbol
 		{
@@ -75,7 +73,7 @@ void Flight::PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin)
 			break;
 		}
 	}
-	for (auto &it : temp)
+	for (auto& it : temp)
 	{
 		if (strcmp(it.getSymbol(), F.getArriveCity()))
 		{

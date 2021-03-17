@@ -40,7 +40,6 @@ public:
 	void PrintCurrentTime();
 	void PrintStartTime();
 
-
 	City* testCity;
 	Flight* testFlight;
 	Aircraft* testAircraft;

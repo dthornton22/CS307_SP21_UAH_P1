@@ -36,14 +36,12 @@ private:
 	int StartHr{ 0 };
 	vector<Flight> FlightList;
 
-
 public:
 	Flight();
-	Flight(char *airline, char *plane, int flNum, char *departCity, int depHr, int depMin, char *destCity);
+	Flight(char* airline, char* plane, int flNum, char* departCity, int depHr, int depMin, char* destCity);
 	~Flight(); 							// Destructor
 	void readData(char* infile);					//
 	vector<Flight> ReturnFlightVector();
-
 
 	// Set functions
 	void setFlightNumber(int param);
