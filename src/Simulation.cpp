@@ -84,7 +84,7 @@ void Simulation::initializeSimulation()
 	}
 
 	// Start with default values
-	testCity = new City(char(0), char(0), char(0), 0, 0);
+	testCity = new City();
 	testFlight = new Flight();
 	testAircraft = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
 
@@ -117,7 +117,7 @@ void Simulation::runSimulation(double clocktime)
 			Counter += 1;
 			
 			vector<Flight> Data = testFlight->ReturnFlightVector();
-
+			vector<City> CityVector = testCity->ReturnCityVector();
 			// Output a new flight.
 			for (auto &it : Data)
 			{
@@ -126,7 +126,7 @@ void Simulation::runSimulation(double clocktime)
 				if (CurrentHr == tempHr && CurrentMin == tempMin)
 				{
 					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-					testFlight->PrintDeparture(it, CurrentMin, CurrentHr);
+					testFlight->PrintDeparture(*testCity, it, CurrentMin, CurrentHr);
 					PrintCurrentTime();
 					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 					Flight NewInAir(it.getAirline(), it.getAircraftType(), it.getFlightNumber(), it.getDepartCity(), it.getDepartHour(), it.getDepartMin(), it.getArriveCity());

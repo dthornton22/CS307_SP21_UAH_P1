@@ -23,9 +23,11 @@ private:
 	char sym[128] = {};
 	double latitude{ 0 };
 	double longitude{ 0 };
+	vector<City> CityList;
 
 public:
-	City(char name, char state, char symbol, double lat, double lon); // Default constructor
+	City();
+	City(char *name, char *state, char *symbol, double lat, double lon); // Default constructor
 	~City(); 							// Destructor
 	void readData(char* infile);					//
 	double calcDistance(char dep, char arr);	//
@@ -36,11 +38,13 @@ public:
 	void setSymbol(char param);
 	void setLatitude(double param);
 	void setLongitude(double param);
+	vector<City> ReturnCityVector();
+	char* ReturnState(char *CityName);
 
 	// Get functions
-	char getName();
-	char getState();
-	char getSymbol();
+	char* getName();
+	char* getState();
+	char* getSymbol();
 	double getLatitude();
 	double getLongitude();
 };

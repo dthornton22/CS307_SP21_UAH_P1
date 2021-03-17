@@ -6,15 +6,20 @@
 // Due Date: 03/16/2021
 // ****************************************
 #include "CityData.h"
+#pragma warning(disable : 4996)
 
-City::City(char name, char state, char symbol, double lat, double lon)
+City::City()
 {
-	this->setName(name);
-	this->setState(state);
-	this->setSymbol(symbol);
+
+}
+
+City::City(char *cityName, char *stateName, char *symbol, double lat, double lon)
+{
+	strcpy(name, cityName);
+	strcpy(state, stateName);
+	strcpy(sym, symbol);
 	this->setLatitude(lat);
 	this->setLongitude(lon);
-	this->setSymbol(symbol);
 }
 
 City::~City()
@@ -26,17 +31,33 @@ void City::readData(char* infile)
 	CityDataParser* ParseCity = new CityDataParser();
 	ParseCity->InitCityData(infile);
 	int CityCount = ParseCity->getCityCount();
-	vector<City> CityList;
 	for (int i = 0; i < CityCount; i++)	// iterate through all cities collecting data
 	{
 		ParseCity->getCityData(name, state, sym, &latitude, &longitude);
-		City NewCity(*name, *state, *sym, latitude, longitude);
+		City NewCity(name, state, sym, latitude, longitude);
 		CityList.push_back(NewCity);
 	}
 	double* distances;
 	char** symbols;
 	ParseCity->getCitySymbolsArray(&symbols);				// Get the city Symbols
 	ParseCity->getDistTable(&distances);					// Get the distance table
+}
+
+vector<City> City::ReturnCityVector()
+{
+	return this->CityList;
+}
+
+char* City::ReturnState(char *CityName)
+{
+	for (auto &it : CityList)
+	{
+		if (CityName == it.getSymbol())
+		{
+			strcpy(CityName, it.getState());
+			return CityName;
+		}
+	}
 }
 
 double City::calcDistance(char depCity, char arrCity)
@@ -69,19 +90,19 @@ void City::setLongitude(double param)
 	this->longitude = param;
 }
 
-char City::getName()
+char* City::getName()
 {
-	return *this->name;
+	return this->name;
 }
 
-char City::getSymbol()
+char* City::getSymbol()
 {
-	return *this->sym;
+	return this->sym;
 }
 
-char City::getState()
+char* City::getState()
 {
-	return *this->state;
+	return this->state;
 }
 
 double City::getLatitude()

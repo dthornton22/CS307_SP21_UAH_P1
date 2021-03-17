@@ -39,6 +39,8 @@ public:
 	void initializeSimulation();
 	void PrintCurrentTime();
 	void PrintStartTime();
+
+
 	City* testCity;
 	Flight* testFlight;
 	Aircraft* testAircraft;
