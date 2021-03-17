@@ -25,7 +25,7 @@ Flight::~Flight()
 void Flight::readData()
 {
 	FlightDataParser* ParseFlight = new FlightDataParser();
-	ParseFlight->InitFlightData("AirlineFlightData01.xml");
+	ParseFlight->InitFlightData("../AirlineFlightData01.xml");
 	const int FlightCount = ParseFlight->getFlightCount();
 	vector<Flight> FlightList;
 	for (int i = 0; i < FlightCount; i++)
@@ -43,27 +43,6 @@ void Flight::PrintData()
 	cout << "Airline: " << this->getAircraftType() << endl;
 }
 
-void Flight::PrintDeparture(int CurrentHr, int CurrentMin)
-{
-	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-	printf("now departing: %s flight %d, %s\n", this->getAircraftType(), this->getFlightNumber(), this->getAircraftType());
-	printf("                 from %s, %s\n", this->getDepartCity(), "city-state");
-	printf("                 en route to %s, %s\n", this->getArriveCity(), "city-state");
-	//printf("                 estimated time of arrival: %d:%d", "call", "time calculation\n");
-	//printf("current clock time: %d:%d\n", CurrentHr, CurrentMin);
-	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-}
-
-void Flight::printArrival(int CurrentHr, int CurrentMin)
-{
-	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-	printf("Now arriving: %s Flight %d, %s\n", airline, flightNumber, aircraftType);
-	printf("\t\tat %s, %s\n", departCity, "dststatename");
-	printf("\t\tfrom %s, %s\n", arriveCity, "depstatename");
-	printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin);
-	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-}
-
 void Flight::PrintAllData(int CurrentHr, int CurrentMin)
 {
 	//printf("%s Flight %d - %s\n", Airline, FlightNum, Plane);
@@ -75,6 +54,34 @@ void Flight::PrintAllData(int CurrentHr, int CurrentMin)
 	//printf("        Current Altitude: %f feet\n", CurrentAltitude);
 }
 
+void Flight::PrintDeparture(int CurrentHr, int CurrentMin)
+{
+	//for (int i = 0; i < 15; i++)
+	//{
+	//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+	//	printf("now departing: %s flight %d, %s\n", FlightList[i].getAircraftType(), FlightList[i].flightNumber, FlightList[i].aircraftType);
+	//	printf("                 from %s, %s\n", FlightList[i].departCity, "city-state");
+	//	printf("                 en route to %s, %s\n", FlightList[i].arriveCity, "city-state");
+	//	printf("                 estimated time of arrival: %d:%d", "call", "time calculation\n");
+	//	printf("current clock time: %d:%d\n", CurrentHr, CurrentMin);
+	//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+	//}
+
+	printf("now departing: %s flight %d, %s\n", this->getAircraftType(), this->getFlightNumber(), this->getAircraftType());
+	printf("                 from %s, %s\n", this->getDepartCity(), "city-state");
+	printf("                 en route to %s, %s\n", this->getArriveCity(), "city-state");
+	//printf("                 estimated time of arrival: %d:%d", "call", "time calculation\n");
+}
+
+void Flight::PrintArrival(int CurrentHr, int CurrentMin)
+{
+	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+	printf("Now arriving: %s Flight %d, %s\n", airline, flightNumber, aircraftType);
+	printf("                 at %s, %s\n", departCity, "dststatename");
+	printf("                 from %s, %s\n", arriveCity, "depstatename");
+	//printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin);
+	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+}
 void Flight::setFlightNumber(int param)
 {
 	this->flightNumber = param;

@@ -46,11 +46,27 @@ void Simulation::printReport()
 	//testFlight->PrintArrival(07, 35);
 }
 
+void Simulation::PrintCurrentTime()
+{
+	if (CurrentHr <= 9 && CurrentMin <= 9) { printf("Current clock time: %0d:0%d\n", CurrentHr, CurrentMin); }		// ex 07:00
+	else if (CurrentHr <= 9 && CurrentMin >= 10) { printf("Current clock time: %0d:%d\n", CurrentHr, CurrentMin); }// ex 07:10
+	else if (CurrentHr >= 10 && CurrentMin <= 9) { printf("Current clock time: %d:0%d\n", CurrentHr, CurrentMin); }// ex 10:00
+	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin); }// ex 10:11
+}
+
+void Simulation::PrintStartTime()
+{
+	if (CurrentHr <= 9 && CurrentMin <= 9) { printf("*** Starting simulation at 0%d:0%d ***\n", CurrentHr, CurrentMin); }     // ex 07:00
+	else if (CurrentHr <= 9 && CurrentMin >= 10) { printf("*** Starting simulation at 0%d:%d ***\n", CurrentHr, CurrentMin); }// ex 07:10
+	else if (CurrentHr >= 10 && CurrentMin <= 9) { printf("*** Starting simulation at %d:0%d ***\n", CurrentHr, CurrentMin); }// ex 10:00
+	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("*** Starting simulation at %d:%d ***\n", CurrentHr, CurrentMin); }// ex 10:11
+}
+
 void Simulation::runSimulation(double clocktime)
 {
 	_ftime_s(&tStruct);	// Get start time
 	thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
-	outputTime = thisTime + 1.0/clocktime; // Set next 1 second interval time (we could add, e.g., .5 to delay just a half second)
+	outputTime = thisTime + 1.0 / clocktime; // Set next 1 second interval time (we could add, e.g., .5 to delay just a half second)
 
 	while (1)     // Start an eternal loop
 	{
@@ -60,7 +76,7 @@ void Simulation::runSimulation(double clocktime)
 		if (thisTime >= outputTime)
 		{
 			CurrentMin += 1;
-			counter += 1;
+			Counter += 1;
 			if (CurrentMin == testFlight->getDepartMin() && CurrentHr == testFlight->getDepartHour())
 			{
 				printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
@@ -71,7 +87,7 @@ void Simulation::runSimulation(double clocktime)
 				// increment the list for the next flight.
 			}
 
-			if ((counter % 5) == 0)
+			if ((Counter % 5) == 0)
 			{
 				printf("================================================================\n");
 				printf("|  Flight Simulation - Status reports on all flights enroute.  |\n");
@@ -98,7 +114,7 @@ void Simulation::runSimulation(double clocktime)
 				}
 				CurrentMin = 0;
 			}
-			outputTime += 1.0/clocktime; // Set time for next 1 second interval
+			outputTime += 1.0 / clocktime; // Set time for next 1 second interval
 		}
 		// Do other stuff here
 	}
@@ -140,20 +156,4 @@ int Simulation::getClockMult()
 string Simulation::getInFile()
 {
 	return this->inputFile;
-}
-
-void Simulation::PrintCurrentTime()
-{
-	if (CurrentHr <= 9 && CurrentMin <= 9) { printf("Current clock time: %0d:0%d\n", CurrentHr, CurrentMin); }		// ex 07:00
-	else if (CurrentHr <= 9 && CurrentMin >= 10) { printf("Current clock time: %0d:%d\n", CurrentHr, CurrentMin); }// ex 07:10
-	else if (CurrentHr >= 10 && CurrentMin <= 9) { printf("Current clock time: %d:0%d\n", CurrentHr, CurrentMin); }// ex 10:00
-	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin); }// ex 10:11
-}
-
-void Simulation::PrintStartTime()
-{
-	if (CurrentHr <= 9 && CurrentMin <= 9) { printf("*** Starting simulation at 0%d:0%d ***\n", CurrentHr, CurrentMin); }     // ex 07:00
-	else if (CurrentHr <= 9 && CurrentMin >= 10) { printf("*** Starting simulation at 0%d:%d ***\n", CurrentHr, CurrentMin); }// ex 07:10
-	else if (CurrentHr >= 10 && CurrentMin <= 9) { printf("*** Starting simulation at %d:0%d ***\n", CurrentHr, CurrentMin); }// ex 10:00
-	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("*** Starting simulation at %d:%d ***\n", CurrentHr, CurrentMin); }// ex 10:11
 }

@@ -23,7 +23,7 @@ class Simulation
 {
 private:
 	int clockMult{ 0 };
-	int counter{ 0 };
+	int Counter{ 0 };
 	int CurrentMin{ 0 };
 	int	CurrentHr{ 0 };
 	string inputFile;
