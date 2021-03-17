@@ -25,7 +25,7 @@ private:
 	double climbSpeed{ 0 };
 	double wingspan{ 0 };
 	double fuselageLength{ 0 };
-
+	vector<Aircraft> AircraftList;
 public:
 	Aircraft();
 	Aircraft(char *make, char *desc, double roc, double wngs, double len, double cs, double ca);
@@ -40,6 +40,7 @@ public:
 	void setClimbSpeed(double param);
 	void setWingspan(double param);
 	void setFuselageLength(double param);
+	vector<Aircraft> ReturnAircraftList();
 
 	// Get functions
 	char getMake();

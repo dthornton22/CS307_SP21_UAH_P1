@@ -31,13 +31,17 @@ void Aircraft::readData(char* infile)
 	FlightDataParser* ParseAircraft = new FlightDataParser();
 	ParseAircraft->InitFlightData(infile);
 	int AircraftCount = ParseAircraft->getAircraftCount();
-	vector<Aircraft> AircraftList;
 	for (int i = 0; i < AircraftCount; i++)
 	{
 		ParseAircraft->getAircraftData(make, model, &climbSpeed, &wingspan, &fuselageLength, &cruiseSpeed, &cruiseAltitude);
 		Aircraft NewAircraft(make, model, climbSpeed, wingspan, fuselageLength, cruiseSpeed, cruiseAltitude);
 		AircraftList.push_back(NewAircraft);
 	}
+}
+
+vector<Aircraft> Aircraft::ReturnAircraftList()
+{
+	return this->AircraftList;
 }
 
 void Aircraft::setMake(char param)
