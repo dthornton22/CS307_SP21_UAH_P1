@@ -6,8 +6,8 @@
 // Due Date: 03/16/2021
 // ****************************************
 #pragma warning(disable : 4996)
-
 #include "Simulation.h"
+
 
 Simulation::Simulation()
 {
@@ -17,9 +17,17 @@ Simulation::~Simulation()
 {
 }
 
-double Simulation::getFlightETA()
+double Simulation::getFlightETA(double distance, char* mak, vector<Aircraft> aircraft)
 {
-	return 0;
+	double tempSpeed = 0;
+	for (auto& it : aircraft)
+	{
+		if (strcmp(it.getMake(), mak) == 0)
+		{
+			tempSpeed = it.getCruiseSpeed();
+		}
+	}
+	return (distance / tempSpeed);
 }
 
 void Simulation::PrintCurrentTime()

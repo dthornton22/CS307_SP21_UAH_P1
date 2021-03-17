@@ -34,7 +34,7 @@ private:
 public:
 	Simulation();
 	~Simulation();
-	double getFlightETA();
+	double getFlightETA(double distance, char* mak, vector<Aircraft> aircraft);
 	void runSimulation(double clocktime);
 	void initializeSimulation();
 	void PrintCurrentTime();
