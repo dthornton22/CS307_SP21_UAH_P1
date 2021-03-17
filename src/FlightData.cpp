@@ -50,34 +50,34 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 {
 	vector<Aircraft> AircraftData = A.ReturnAircraftList();
 	vector<City> CityData = C.ReturnCityVector();
-	double tempLat; double tempLon; 
+	double tempLat; double tempLon;
 	printf("%s Flight %d - %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
-	for (auto &it : CityData)
+	for (auto& it : CityData)
 	{
-		if (strcmp(it.getSymbol(), F.getDepartCity()) == 0)	
+		if (strcmp(it.getSymbol(), F.getDepartCity()) == 0)
 		{
-			printf("\t\tDeparts: %s (%f, %f) at %d:%d\n", F.getDepartCity(), it.getLatitude(), it.getLongitude(), F.getDepartHour(), F.getDepartMin()); 
+			printf("\t\tDeparts: %s (%f, %f) at %d:%d\n", F.getDepartCity(), it.getLatitude(), it.getLongitude(), F.getDepartHour(), F.getDepartMin());
 		}
 	}
 
-	for (auto &it : CityData)
+	for (auto& it : CityData)
 	{
-		if (strcmp(it.getSymbol(), F.getArriveCity()) == 0)	
+		if (strcmp(it.getSymbol(), F.getArriveCity()) == 0)
 		{
 			// DO THE TIME CALCULATION HERE!!!!!
-			printf("\t\tArrives: %s (%f, %f) at %d:%d\n", F.getArriveCity(), it.getLatitude(), it.getLongitude(), F.getDepartHour(), F.getDepartMin());	
+			printf("\t\tArrives: %s (%f, %f) at %d:%d\n", F.getArriveCity(), it.getLatitude(), it.getLongitude(), F.getDepartHour(), F.getDepartMin());
 		}
 	}
 	//printf("\t\tCurrent location: (%f, %f)\n", CurrentLocLat, CurrentLocLon); // double // double
 	//printf("\t\t\t\t%f miles from %s, %f miles to %s", DepDistance, DepSymbol, DstDistance, DstSymbol); // double // char // double // char
-	for (auto &it : AircraftData)
+	for (auto& it : AircraftData)
 	{
 		if (strcmp(F.getAircraftType(), it.getModel()) == 0)
 		{
 			printf("\t\tCurrent Speed: %f MPH\n", it.getCruiseSpeed());
 		}
 	}
-	for (auto &it : AircraftData)
+	for (auto& it : AircraftData)
 	{
 		if (strcmp(F.getAircraftType(), it.getModel()) == 0)
 		{
@@ -90,18 +90,18 @@ void Flight::PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin)
 {
 	printf("now departing: %s flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
 	vector<City> temp = C.ReturnCityVector();
-	for (auto &it : temp)
+	for (auto& it : temp)
 	{
 		if (strcmp(it.getSymbol(), F.getDepartCity()) == 0)	// if the symbol is equal to the departure city symbol
 		{
-			printf("\t\tfrom %s, %s\n", it.getName(), it.getState()); 
+			printf("\t\tfrom %s, %s\n", it.getName(), it.getState());
 		}
 	}
 	for (auto& it : temp)
 	{
 		if (strcmp(it.getSymbol(), F.getArriveCity()) == 0)
 		{
-			printf("\t\ten route to %s, %s\n", it.getName(), it.getState()); 
+			printf("\t\ten route to %s, %s\n", it.getName(), it.getState());
 		}
 	}
 }
