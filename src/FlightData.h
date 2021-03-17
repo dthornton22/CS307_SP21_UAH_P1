@@ -22,10 +22,10 @@ private:
 	int flightNumber{ 0 };
 	int departTimeMin{ 0 };
 	int departTimeHr{ 0 };
-	char airline[128];
-	char aircraftType[128];
-	char departCity[128];
-	char arriveCity[128];
+	char airline[128] = {};
+	char aircraftType[128] = {};
+	char departCity[128] = {};
+	char arriveCity[128] = {};
 	int StartMin{ 0 };
 	int StartHr{ 0 };
 

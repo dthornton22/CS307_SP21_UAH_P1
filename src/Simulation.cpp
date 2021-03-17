@@ -50,8 +50,9 @@ void Simulation::initializeSimulation()
 	char* inFileCharArray = &inputFile[0];
 	ifstream userInFile(inFileCharArray);
 	string cityFile, flightFile;
-	char mycityfile[32];
-	char myflightfile[32];
+	char myCityFile[32];
+	char myFlightFile[32];
+
 	if (!userInFile)
 	{
 		cout << "Cannot open file " << inputFile << endl;
@@ -68,8 +69,8 @@ void Simulation::initializeSimulation()
 
 		string temp1 = "../" + cityFile;
 		string temp2 = "../" + flightFile;
-		strcpy(mycityfile, temp1.c_str());
-		strcpy(myflightfile, temp2.c_str());
+		strcpy(myCityFile, temp1.c_str());
+		strcpy(myFlightFile, temp2.c_str());
 
 		cout << "Initializing simulation..." << endl;
 	}
@@ -89,9 +90,9 @@ void Simulation::initializeSimulation()
 
 	// Then read in the data
 
-	testCity->readData(mycityfile);
-	testFlight->readData(myflightfile);
-	testAircraft->readData(myflightfile);
+	testCity->readData(myCityFile);
+	testFlight->readData(myFlightFile);
+	testAircraft->readData(myFlightFile);
 
 	// Get start time
 	CurrentHr = testFlight->getStartHr();

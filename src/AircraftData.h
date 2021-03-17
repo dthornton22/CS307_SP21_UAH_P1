@@ -18,8 +18,8 @@ using namespace std;
 class Aircraft
 {
 private:
-	char make[128];
-	char model[128];
+	char make[128] = {};
+	char model[128] = {};
 	double cruiseSpeed{ 0 };
 	double cruiseAltitude{ 0 };
 	double climbSpeed{ 0 };
