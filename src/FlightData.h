@@ -47,6 +47,7 @@ public:
 		void PrintDeparture(int CurrentHr, int CurrentMin);
 		void PrintArrival(int CurrentHr, int CurrentMin);
 		void PrintData();
+		void PrintAllData(int CurrentHr, int CurrentMin);
 
 		// Get functions
 		int getFlightNumber();

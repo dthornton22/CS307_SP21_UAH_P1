@@ -23,6 +23,9 @@ class Simulation
 {
 private:
 	int clockMult{ 0 };
+	int counter{ 0 };
+	int CurrentMin{ 0 };
+	int	CurrentHr{ 0 };
 	string inputFile;
 	struct _timeb tStruct { 0 };
 	double thisTime{ 0 };
@@ -35,6 +38,11 @@ private:
 		void printReport();				// Prints report to terminal and output file
 		void runSimulation(double clocktime);// Runs the simulation
 		void initializeSimulation();	// Set up the simulation
+		void PrintCurrentTime();
+		void PrintStartTime();
+		City* testCity;// = new City(char(0), char(0), char(0), 0, 0);
+		Flight* testFlight;// = new Flight(char(0), char(0), 0, char(0), 0, 0, char(0));
+		Aircraft* testAircraft;// = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
 
 	// Set functions
 	void setClockMult(int param);

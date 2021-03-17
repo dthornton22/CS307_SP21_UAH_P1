@@ -59,7 +59,45 @@ void Simulation::runSimulation(double clocktime)
 		// Check for 1 second interval to print status to screen
 		if (thisTime >= outputTime)
 		{
-			printReport();     // Call function to print all data
+			CurrentMin += 1;
+			counter += 1;
+			if (CurrentMin == testFlight->getDepartMin() && CurrentHr == testFlight->getDepartHour())
+			{
+				printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+				testFlight->PrintDeparture(CurrentMin, CurrentHr);
+				PrintCurrentTime();
+				printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+
+				// increment the list for the next flight.
+			}
+
+			if ((counter % 5) == 0)
+			{
+				printf("================================================================\n");
+				printf("|  Flight Simulation - Status reports on all flights enroute.  |\n");
+				printf("================================================================\n");
+				testFlight->PrintAllData(CurrentHr, CurrentMin);
+				PrintCurrentTime();
+				printf("================================================================\n");
+			}
+
+			// Need to write get functions for the arrival times
+			//if (CurrentHr == testFlight->getArriveHr() && CurrentMin == testFlight->getArrivalMin())	
+			//{
+			//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+			//	testFlight->PrintArrival(CurrentMin, CurrentHr);
+			//	PrintCurrentTime();
+			//	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+			//}
+			if (CurrentMin >= 60)		// Check for minute overflow
+			{
+				CurrentHr += 1;
+				if (CurrentHr == 13)	// Check for hour overflow
+				{
+					CurrentHr = 1;
+				}
+				CurrentMin = 0;
+			}
 			outputTime += 1.0/clocktime; // Set time for next 1 second interval
 		}
 		// Do other stuff here
@@ -70,6 +108,18 @@ void Simulation::initializeSimulation()
 {
 	printf("\nWhat speed do you want to run the simulation? (1, 2, or 3)\n");
 	cin >> clockMult;
+	// Start with default values
+	testCity = new City(char(0), char(0), char(0), 0, 0);
+	testFlight = new Flight(char(0), char(0), 0, char(0), 0, 0, char(0));
+	testAircraft = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
+	// Then read in the data
+	testCity->readData();
+	testFlight->readData();
+	testAircraft->readData();
+	// Get start time
+	CurrentHr = testFlight->getStartHr();
+	CurrentMin = testFlight->getStartMin();
+	PrintStartTime();
 }
 
 void Simulation::setClockMult(int param)
@@ -90,4 +140,20 @@ int Simulation::getClockMult()
 string Simulation::getInFile()
 {
 	return this->inputFile;
+}
+
+void Simulation::PrintCurrentTime()
+{
+	if (CurrentHr <= 9 && CurrentMin <= 9) { printf("Current clock time: %0d:0%d\n", CurrentHr, CurrentMin); }		// ex 07:00
+	else if (CurrentHr <= 9 && CurrentMin >= 10) { printf("Current clock time: %0d:%d\n", CurrentHr, CurrentMin); }// ex 07:10
+	else if (CurrentHr >= 10 && CurrentMin <= 9) { printf("Current clock time: %d:0%d\n", CurrentHr, CurrentMin); }// ex 10:00
+	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin); }// ex 10:11
+}
+
+void Simulation::PrintStartTime()
+{
+	if (CurrentHr <= 9 && CurrentMin <= 9) { printf("*** Starting simulation at 0%d:0%d ***\n", CurrentHr, CurrentMin); }     // ex 07:00
+	else if (CurrentHr <= 9 && CurrentMin >= 10) { printf("*** Starting simulation at 0%d:%d ***\n", CurrentHr, CurrentMin); }// ex 07:10
+	else if (CurrentHr >= 10 && CurrentMin <= 9) { printf("*** Starting simulation at %d:0%d ***\n", CurrentHr, CurrentMin); }// ex 10:00
+	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("*** Starting simulation at %d:%d ***\n", CurrentHr, CurrentMin); }// ex 10:11
 }

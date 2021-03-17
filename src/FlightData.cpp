@@ -64,6 +64,17 @@ void Flight::printArrival(int CurrentHr, int CurrentMin)
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 }
 
+void Flight::PrintAllData(int CurrentHr, int CurrentMin)
+{
+	//printf("%s Flight %d - %s\n", Airline, FlightNum, Plane);
+	//printf("        Departs: %s (%f, %f) at %d:%d\n", DepSymbol, Lat, Lon, LocTimeHr, LocTimeMin); // char // double // double // int // int
+	//printf("        Arrives: %s (%f, %f) at %d:%d\n", DstSymbol, Lat, Lon, DstTimeHr, DstTimeMin); // char // double // double // int // int
+	//printf("        Current location: (%f, %f)\n", CurrentLocLat, CurrentLocLon); // double // double
+	//printf("                  %f miles from %s, %f miles to %s", DepDistance, DepSymbol, DstDistance, DstSymbol); // double // char // double // char
+	//printf("        Current Speed: %f MPH\n", CurrentSpeed);
+	//printf("        Current Altitude: %f feet\n", CurrentAltitude);
+}
+
 void Flight::setFlightNumber(int param)
 {
 	this->flightNumber = param;
