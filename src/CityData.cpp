@@ -10,10 +10,9 @@
 
 City::City()
 {
-
 }
 
-City::City(char *cityName, char *stateName, char *symbol, double lat, double lon)
+City::City(char* cityName, char* stateName, char* symbol, double lat, double lon)
 {
 	strcpy(name, cityName);
 	strcpy(state, stateName);
@@ -48,9 +47,9 @@ vector<City> City::ReturnCityVector()
 	return this->CityList;
 }
 
-char* City::ReturnState(char *CityName)
+char* City::ReturnState(char* CityName)
 {
-	for (auto &it : CityList)
+	for (auto& it : CityList)
 	{
 		if (CityName == it.getSymbol())
 		{

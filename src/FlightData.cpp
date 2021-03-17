@@ -10,11 +10,9 @@
 
 Flight::Flight()
 {
-
 }
 
-
-Flight::Flight(char *al, char *plane, int flNum, char *depCity, int depHr, int depMin, char *dstCity)
+Flight::Flight(char* al, char* plane, int flNum, char* depCity, int depHr, int depMin, char* dstCity)
 {
 	strcpy(airline, al);
 	strcpy(aircraftType, plane);
@@ -99,7 +97,7 @@ void Flight::PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin)
 			printf("\t\tfrom %s, %s\n", it.getName(), it.getState()); 
 		}
 	}
-	for (auto &it : temp)
+	for (auto& it : temp)
 	{
 		if (strcmp(it.getSymbol(), F.getArriveCity()) == 0)
 		{

@@ -8,10 +8,9 @@
 #include "AircraftData.h"
 Aircraft::Aircraft()
 {
-
 }
 
-Aircraft::Aircraft(char *planemake, char *desc, double roc, double wngs, double len, double cs, double ca)
+Aircraft::Aircraft(char* planemake, char* desc, double roc, double wngs, double len, double cs, double ca)
 {
 	strcpy(make, planemake);
 	strcpy(model, desc);
