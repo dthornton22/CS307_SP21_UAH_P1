@@ -18,8 +18,8 @@ using namespace std;
 class Aircraft
 {
 private:
-	char make[128];
-	char model[128];
+	char make[128] = {};
+	char model[128] = {};
 	double cruiseSpeed{ 0 };
 	double cruiseAltitude{ 0 };
 	double climbSpeed{ 0 };
@@ -27,9 +27,9 @@ private:
 	double fuselageLength{ 0 };
 
 public:
-	Aircraft(char make, char desc, double roc, double wngs, double len, double cs, double ca); // Default constructor
-	~Aircraft(); 						// Destructor
-	void readData(char* infile);		//
+	Aircraft(char make, char desc, double roc, double wngs, double len, double cs, double ca);
+	~Aircraft();
+	void readData(char* infile);
 
 	// Set functions
 	void setMake(char param);

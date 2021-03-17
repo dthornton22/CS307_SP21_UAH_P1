@@ -18,9 +18,9 @@ using namespace std;
 class City
 {
 private:
-	char name[128];
-	char state[128];
-	char sym[128];
+	char name[128] = {};
+	char state[128] = {};
+	char sym[128] = {};
 	double latitude{ 0 };
 	double longitude{ 0 };
 

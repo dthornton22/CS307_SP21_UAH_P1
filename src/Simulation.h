@@ -32,17 +32,16 @@ private:
 	double outputTime{ 0 };
 
 public:
-	Simulation(); 					// Default constructor
-	~Simulation(); 					// Destructor
-	double getFlightETA();			// Todo: what does this return
-	void printReport();				// Prints report to terminal and output file
-	void runSimulation(double clocktime);// Runs the simulation
-	void initializeSimulation();	// Set up the simulation
+	Simulation();
+	~Simulation();
+	double getFlightETA();
+	void runSimulation(double clocktime);	// Runs the simulation
+	void initializeSimulation();
 	void PrintCurrentTime();
 	void PrintStartTime();
-	City* testCity;// = new City(char(0), char(0), char(0), 0, 0);
-	Flight* testFlight;// = new Flight(char(0), char(0), 0, char(0), 0, 0, char(0));
-	Aircraft* testAircraft;// = new Aircraft(char(0), char(0), 0, 0, 0, 0, 0);
+	City* testCity;
+	Flight* testFlight;
+	Aircraft* testAircraft;
 
 	// Set functions
 	void setClockMult(int param);

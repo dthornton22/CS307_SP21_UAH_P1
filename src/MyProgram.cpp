@@ -10,7 +10,7 @@
 
 int main(int argc, char* argv[])
 {
-	Simulation mySim; 	            // Instantiate Simulation object
-	mySim.initializeSimulation();   // Call Simulation::initializeSimulation
-	mySim.runSimulation(mySim.getClockMult());          // Call Simulation::runSimulation
+	Simulation mySim; 							// Instantiate Simulation object
+	mySim.initializeSimulation();				// Call Simulation::initializeSimulation
+	mySim.runSimulation(mySim.getClockMult());	// Call Simulation::runSimulation
 }
