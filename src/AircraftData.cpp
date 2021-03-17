@@ -79,14 +79,14 @@ void Aircraft::setFuselageLength(double param)
 	this->fuselageLength = param;
 }
 
-char Aircraft::getMake()
+char* Aircraft::getMake()
 {
-	return *this->make;
+	return this->make;
 }
 
-char Aircraft::getModel()
+char* Aircraft::getModel()
 {
-	return *this->model;
+	return this->model;
 }
 
 double Aircraft::getCruiseSpeed()
