@@ -106,9 +106,9 @@ void Simulation::runSimulation(double clocktime)
 	thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
 	outputTime = thisTime + 1.0 / clocktime; // Set next 1 second interval time (we could add, e.g., .5 to delay just a half second)
 	vector<Flight> InAir;
-	while (1)     // Start an infinite loop
+	while (1) // Start an infinite loop
 	{
-		_ftime_s(&tStruct);    // Get the current time
+		_ftime_s(&tStruct); // Get the current time
 		thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
 		// Check for 1 second interval to print status to screen
 		if (thisTime >= outputTime)
