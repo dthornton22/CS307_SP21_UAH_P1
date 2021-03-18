@@ -1,9 +1,9 @@
 // ****************************************
 // Program Title: Project1
 // Project File: FlightData.cpp
-// Name: David Thornton
+// Name: Nolan Anderson
 // Course: CS-307
-// Due Date: 03/16/2021
+// Due Date: 03/17/2021
 // ****************************************
 #include "FlightData.h"
 #pragma warning(disable : 4996)
@@ -12,7 +12,7 @@ Flight::Flight()
 {
 }
 
-Flight::Flight(char* al, char* plane, int flNum, char* depCity, int depHr, int depMin, char* dstCity)
+Flight::Flight(char* al, char* plane, int flNum, char* depCity, int depHr, int depMin, char* dstCity, int AMin, int AHr)
 {
 	strcpy(airline, al);
 	strcpy(aircraftType, plane);
@@ -20,6 +20,8 @@ Flight::Flight(char* al, char* plane, int flNum, char* depCity, int depHr, int d
 	strcpy(departCity, depCity);
 	this->departTimeHr = depHr;
 	this->departTimeMin = depMin;
+	this->arrHr = AHr;
+	this->arrMin = AMin;
 	strcpy(arriveCity, dstCity);
 }
 
@@ -35,7 +37,7 @@ void Flight::readData(char* infile)
 	for (int i = 0; i < FlightCount; i++)
 	{
 		ParseFlight->getFlightData(airline, aircraftType, &flightNumber, departCity, &departTimeHr, &departTimeMin, arriveCity);
-		Flight* NewFlight = new Flight(airline, aircraftType, flightNumber, departCity, departTimeHr, departTimeMin, arriveCity);
+		Flight* NewFlight = new Flight(airline, aircraftType, flightNumber, departCity, departTimeHr, departTimeMin, arriveCity, arrMin, arrHr);
 		FlightList.push_back(*NewFlight);
 	}
 	ParseFlight->getStartTime(&StartHr, &StartMin);
@@ -54,14 +56,8 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 	double tempTripTime;
 	double tempElapsedTimeHr = CurrentHr - F.getDepartHour();
 	double tempElapsedTimeMin = CurrentMin - F.getDepartMin();
-	double tempElapsedTime;
-	double tempCurrentLon;
-	double tempCurrentLat;
-	double tempSpeed;
-
-	int tempHour;
-	int tempMin;
-
+	double tempElapsedTime;	double tempCurrentLon;	double tempCurrentLat;	double tempSpeed;
+	int tempHour;	int tempMin;
 	printf("%s Flight %d - %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
 	
 	// Time of flight calculation
@@ -74,47 +70,46 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 		}
 	}
 
-	double eta = (tempDistance / tempSpeed);
-	int hours = int(floor(eta));
-	double temp = eta - floor(eta);
-	int min = int(round(temp * 60));
-
-	if ((CurrentHr + hours) >= 24) {
-		tempHour = 0;
-	}
-	else
-	{
-		tempHour = CurrentHr + hours;
-	}
-	if ((CurrentMin + min) >= 60) {
-		tempMin = (CurrentMin + min) - 60;
-		tempHour++;
-	}
-	else {
-		tempMin = CurrentMin + min;
-	}
-
-	// Departs from... 
-	for(auto& it : CityData)
-	{
-		if (strcmp(it.getSymbol(), F.getDepartCity()) == 0)
-		{
-			printf("\t\tDeparts: %s (%f, %f) at %d:%d\n", F.getDepartCity(), it.getLatitude(), it.getLongitude(), F.getDepartHour(), F.getDepartMin());
-		}
-	}
-
 	// Arrives at...
 	for (auto& it : CityData)
 	{
 		if (strcmp(it.getSymbol(), F.getArriveCity()) == 0)
 		{
-			printf("\t\tArrives: %s (%f, %f) at", it.getSymbol(), it.getLatitude(), it.getLongitude());
-			if (tempHour <= 9 && tempMin <= 9) { printf(" %0d:%0d\n", tempHour, tempMin); }// ex 07:00
-			else if (tempHour <= 9 && tempMin >= 10) { printf(" %0d:%d\n", tempHour, tempMin); }// ex 07:10
-			else if (tempHour >= 10 && tempMin <= 9) { printf(" %d:%0d\n", tempHour, tempMin); }// ex 10:00
-			else if (tempHour >= 10 && tempMin >= 10) { printf(" %d:%d\n", tempHour, tempMin); }// ex 10:11
+			printf("\t\tArrives: %s (%.2f, %.2f) at", it.getSymbol(), it.getLatitude(), it.getLongitude());
 		}
 	}
+
+	// Time of flight calculation
+	for (auto& it : AircraftData)
+	{
+		if (strcmp(F.getAircraftType(), it.getMake()) == 0)
+		{
+			tempSpeed = it.getCruiseSpeed();
+		}
+	}
+	double eta = (tempDistance / tempSpeed);
+	int hours = int(floor(eta));
+	double temp = eta - floor(eta);
+	int min = int(round(temp * 60));
+
+	if ((F.getDepartHour() + hours) >= 24) {
+		tempHour = 0;
+	}
+	else
+	{
+		tempHour = F.getDepartHour() + hours;
+	}
+	if ((F.getDepartMin() + min) >= 60) {
+		tempMin = (F.getDepartMin() + min) - 60;
+		tempHour++;
+	}
+	else {
+		tempMin = F.getDepartMin() + min;
+	}
+	if (tempHour <= 9 && tempMin <= 9) { printf(" %0d:%0d\n", tempHour, tempMin); }
+	else if (tempHour <= 9 && tempMin >= 10) { printf(" %0d:%d\n", tempHour, tempMin); }
+	else if (tempHour >= 10 && tempMin <= 9) { printf(" %d:%0d\n", tempHour, tempMin); }
+	else if (tempHour >= 10 && tempMin >= 10) { printf(" %d:%d\n", tempHour, tempMin); }
 
 	//printf("\t\tCurrent location: (%f, %f)\n", CurrentLocLat, CurrentLocLon); // double // double
 	//printf("\t\t\t\t%f miles from %s, %f miles to %s", DepDistance, DepSymbol, DstDistance, DstSymbol); // double // char // double // char
@@ -154,22 +149,24 @@ void Flight::PrintDeparture(Aircraft A, City C, Flight F, int CurrentHr, int Cur
 		}
 	}
 	
+	// *********** CALC ETA ************ //
+	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());			// Distance
 	double tempSpeed;
 	int tempHour = 0;
 	int tempMin = 0;
-	for (auto &it : tempAircraft) 
+	// Time of flight calculation
+	for (auto& it : tempAircraft)
 	{
-		if (strcmp(it.getMake(), F.getAircraftType()) == 0) {
+		if (strcmp(F.getAircraftType(), it.getMake()) == 0)
+		{
 			tempSpeed = it.getCruiseSpeed();
 		}
 	}
 
-	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());			// Distance
 	double eta = (tempDistance / tempSpeed);
 	int hours = int(floor(eta));
 	double temp = eta - floor(eta);
 	int min = int(round(temp * 60));
-
 	if ((CurrentHr + hours) >= 24) {
 		tempHour = 0;
 	}
@@ -181,34 +178,15 @@ void Flight::PrintDeparture(Aircraft A, City C, Flight F, int CurrentHr, int Cur
 		tempMin = (CurrentMin + min) - 60;
 		tempHour++;
 	}
-	else {
+	else 
+	{
 		tempMin = CurrentMin + min;
 	}
-
-	F.setArrMin(tempMin);
-	F.setArrHr(tempHour);
-
-	if (tempHour <= 9 && tempMin <= 9) { printf("Current clock time: %0d:0%d\n", tempHour, tempMin); }// ex 07:00
-	else if (tempHour <= 9 && tempMin >= 10) { printf("\tEstimated Time of Arrival: %0d:%d\n", tempHour, tempMin); }// ex 07:10
-	else if (tempHour >= 10 && tempMin <= 9) { printf("\tEstimated Time of Arrival: %d:0%d\n", tempHour, tempMin); }// ex 10:00
-	else if (tempHour >= 10 && tempMin >= 10) { printf("\tEstimated Time of Arrival: %d:%d\n", tempHour, tempMin); }// ex 10:11
+	if (tempHour <= 9 && tempMin <= 9) { printf("Estimated Time of Arrival: %0d:0%d\n", tempHour, tempMin); }
+	else if (tempHour <= 9 && tempMin >= 10) { printf("\tEstimated Time of Arrival: %0d:%d\n", tempHour, tempMin); }
+	else if (tempHour >= 10 && tempMin <= 9) { printf("\tEstimated Time of Arrival: %d:0%d\n", tempHour, tempMin); }
+	else if (tempHour >= 10 && tempMin >= 10) { printf("\tEstimated Time of Arrival: %d:%d\n", tempHour, tempMin); }
 }
-
-double Flight::CurrentLat(double lat1, double lat2, double elapsedTime, double TripTime)
-{
-	return lat1 + (lat2 - lat1) * (elapsedTime / TripTime);
-}
-
-double Flight::CurrentLon(double lon1, double lon2, double elapsedTime, double TripTime)
-{
-	return lon1 + (lon2 - lon1) * (elapsedTime / TripTime);
-}
-
-double Flight::CurrentAlt(double elapsedMin, double ROC)
-{
-	return elapsedMin / ROC;
-}
-
 
 void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 {
@@ -228,6 +206,97 @@ void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 			printf("\t\from %s, %s\n", it.getName(), it.getState());
 		}
 	}
+}
+
+int Flight::CalcETAMin(Flight F, Aircraft A, City C, int CurrentHr, int CurrentMin)
+{
+	vector<Aircraft> tempAircraft = A.ReturnAircraftList();
+	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());			// Distance
+	double tempSpeed;
+	int tempHour = 0;
+	int tempMin = 0;
+	// Time of flight calculation
+	for (auto& it : tempAircraft)
+	{
+		if (strcmp(F.getAircraftType(), it.getMake()) == 0)
+		{
+			tempSpeed = it.getCruiseSpeed();
+		}
+	}
+
+	double eta = (tempDistance / tempSpeed);
+	int hours = int(floor(eta));
+	double temp = eta - floor(eta);
+	int min = int(round(temp * 60));
+	if ((CurrentHr + hours) >= 24) {
+		tempHour = 0;
+	}
+	else
+	{
+		tempHour = CurrentHr + hours;
+	}
+	if ((CurrentMin + min) >= 60) {
+		tempMin = (CurrentMin + min) - 60;
+		tempHour++;
+	}
+	else
+	{
+		tempMin = CurrentMin + min;
+	}
+	return tempMin;
+}
+
+int Flight::CalcETAHr(Flight F, Aircraft A, City C, int CurrentHr, int CurrentMin)
+{
+	vector<Aircraft> tempAircraft = A.ReturnAircraftList();
+	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());			// Distance
+	double tempSpeed;
+	int tempHour = 0;
+	int tempMin = 0;
+	// Time of flight calculation
+	for (auto& it : tempAircraft)
+	{
+		if (strcmp(F.getAircraftType(), it.getMake()) == 0)
+		{
+			tempSpeed = it.getCruiseSpeed();
+		}
+	}
+
+	double eta = (tempDistance / tempSpeed);
+	int hours = int(floor(eta));
+	double temp = eta - floor(eta);
+	int min = int(round(temp * 60));
+	if ((CurrentHr + hours) >= 24) {
+		tempHour = 0;
+	}
+	else
+	{
+		tempHour = CurrentHr + hours;
+	}
+	if ((CurrentMin + min) >= 60) {
+		tempMin = (CurrentMin + min) - 60;
+		tempHour++;
+	}
+	else
+	{
+		tempMin = CurrentMin + min;
+	}
+	return tempHour;
+}
+
+double Flight::CurrentLat(double lat1, double lat2, double elapsedTime, double TripTime)
+{
+	return lat1 + (lat2 - lat1) * (elapsedTime / TripTime);
+}
+
+double Flight::CurrentLon(double lon1, double lon2, double elapsedTime, double TripTime)
+{
+	return lon1 + (lon2 - lon1) * (elapsedTime / TripTime);
+}
+
+double Flight::CurrentAlt(double elapsedMin, double ROC)
+{
+	return elapsedMin / ROC;
 }
 
 void Flight::setFlightNumber(int param)

@@ -1,9 +1,9 @@
 // ****************************************
 // Program Title: Project1
 // Project File: Simulation.cpp
-// Name: David Thornton
+// Name: Nolan Anderson
 // Course: CS-307
-// Due Date: 03/16/2021
+// Due Date: 03/17/2021
 // ****************************************
 #pragma warning(disable : 4996)
 
@@ -117,10 +117,12 @@ void Simulation::runSimulation(double clocktime)
 				if (CurrentHr == tempHr && CurrentMin == tempMin)	// Find the time
 				{
 					printf("\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-					testFlight->PrintDeparture(*testAircraft, *testCity, it, CurrentMin, CurrentHr);
+					testFlight->PrintDeparture(*testAircraft, *testCity, it, CurrentHr, CurrentMin);
 					PrintCurrentTime();
 					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-					Flight NewInAir(it.getAirline(), it.getAircraftType(), it.getFlightNumber(), it.getDepartCity(), it.getDepartHour(), it.getDepartMin(), it.getArriveCity());
+					Flight NewInAir(it.getAirline(), it.getAircraftType(), it.getFlightNumber(), it.getDepartCity(), it.getDepartHour(), it.getDepartMin(), it.getArriveCity(), it.getArrMin(), it.getArrHr());
+					NewInAir.setArrHr(NewInAir.CalcETAHr(it, *testAircraft, *testCity, CurrentHr, CurrentMin));
+					NewInAir.setArrMin(NewInAir.CalcETAMin(it, *testAircraft, *testCity, CurrentHr, CurrentMin));
 					InAir.push_back(NewInAir);
 				}
 			}
@@ -139,15 +141,15 @@ void Simulation::runSimulation(double clocktime)
 				printf("================================================================\n");
 			}
 
-			for (auto &it : Flights)
+			for (auto &it : InAir)
 			{
 				if (CurrentHr == it.getArrHr() && CurrentMin == it.getArrMin())
 				{
 					printf("\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-					testFlight->PrintArrival(*testCity, *testFlight, CurrentMin, CurrentHr);
+					testFlight->PrintArrival(*testCity, it, CurrentMin, CurrentHr);
 					PrintCurrentTime();
 					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-					InAir.pop_back();
+					InAir.erase(InAir.begin());
 					if (InAir.empty())
 					{
 						finished = true;
