@@ -9,6 +9,7 @@
 #include "CityDataParser.h"
 #include "CityData.h"
 #include "AircraftData.h"
+#include <math.h>
 #include <cstdlib>
 #include <fstream>
 #include <vector>
@@ -34,6 +35,8 @@ private:
 	char arriveCity[128] = {};
 	int StartMin{ 0 };
 	int StartHr{ 0 };
+	int arrHr{ 0 };
+	int arrMin{ 0 };
 	vector<Flight> FlightList;
 
 public:
@@ -42,9 +45,12 @@ public:
 	~Flight();
 	void readData(char* infile);
 	vector<Flight> ReturnFlightVector();
-	void PrintDeparture(City C, Flight F, int CurrentHr, int CurrentMin);
+	void PrintDeparture(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin);
 	void PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin);
 	void PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin);
+	double CurrentLon(double lat1, double lat2, double elapsedTime, double TripTime);
+	double CurrentLat(double lon1, double lon2, double elapsedTime, double TripTime);
+	double CurrentAlt(double elapsedMin, double ROC);
 
 	// Set functions
 	void setFlightNumber(int param);
@@ -54,6 +60,8 @@ public:
 	void setAircraftType(char param);
 	void setDepartCity(char param);
 	void setArriveCity(char param);
+	void setArrMin(int param);
+	void setArrHr(int param);
 
 	// Get functions
 	int getFlightNumber();
@@ -61,6 +69,8 @@ public:
 	int getDepartHour();
 	int getStartHr();
 	int getStartMin();
+	int getArrHr();
+	int getArrMin();
 	char* getAirline();
 	char* getAircraftType();
 	char* getDepartCity();
