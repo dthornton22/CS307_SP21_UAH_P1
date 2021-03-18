@@ -30,6 +30,8 @@ void City::readData(char* infile)
 	CityDataParser* ParseCity = new CityDataParser();
 	ParseCity->InitCityData(infile);
 	CityCount = ParseCity->getCityCount();
+	double* distArray = 0;
+	ParseCity->getDistTable(&distArray);
 	for (int i = 0; i < CityCount; i++)	// iterate through all cities collecting data
 	{
 		ParseCity->getCityData(name, state, sym, &latitude, &longitude);

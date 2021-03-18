@@ -228,6 +228,7 @@ void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 			printf("\t\from %s, %s\n", it.getName(), it.getState());
 		}
 	}
+
 }
 
 void Flight::setFlightNumber(int param)
