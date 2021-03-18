@@ -1,9 +1,9 @@
 // ****************************************
 // Program Title: Project1
 // Project File: CityData.h
-// Name: David Thornton
+// Name: Nolan Anderson
 // Course: CS-307
-// Due Date: 03/16/2021
+// Due Date: 03/17/2021
 // ****************************************
 #include "FlightDataParser.h"
 #include "CityDataParser.h"

@@ -1,9 +1,9 @@
 // ****************************************
 // Program Title: Project1
 // Project File: FlightData.h
-// Name: David Thornton
+// Name: Nolan Anderson
 // Course: CS-307
-// Due Date: 03/16/2021
+// Due Date: 03/17/2021
 // ****************************************
 #include "FlightDataParser.h"
 #include "CityDataParser.h"
@@ -41,7 +41,7 @@ private:
 
 public:
 	Flight();
-	Flight(char* airline, char* plane, int flNum, char* departCity, int depHr, int depMin, char* destCity);
+	Flight(char* airline, char* plane, int flNum, char* departCity, int depHr, int depMin, char* destCity, int AMin, int AHr);
 	~Flight();
 	void readData(char* infile);
 	vector<Flight> ReturnFlightVector();
@@ -62,6 +62,8 @@ public:
 	void setArriveCity(char param);
 	void setArrMin(int param);
 	void setArrHr(int param);
+	int CalcETAMin(Flight F, Aircraft A, City C, int CurrentHr, int CurrentMin);
+	int CalcETAHr(Flight F, Aircraft A, City C, int CurrentHr, int CurrentMin);
 
 	// Get functions
 	int getFlightNumber();
