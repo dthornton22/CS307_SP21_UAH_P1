@@ -63,7 +63,7 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 	int tempMin;
 
 	printf("%s Flight %d - %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
-	
+
 	// Time of flight calculation
 	for (auto& it : AircraftData)
 	{
@@ -94,8 +94,8 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 		tempMin = CurrentMin + min;
 	}
 
-	// Departs from... 
-	for(auto& it : CityData)
+	// Departs from...
+	for (auto& it : CityData)
 	{
 		if (strcmp(it.getSymbol(), F.getDepartCity()) == 0)
 		{
@@ -153,11 +153,11 @@ void Flight::PrintDeparture(Aircraft A, City C, Flight F, int CurrentHr, int Cur
 			printf("\t\ten route to %s, %s\n", it.getName(), it.getState());
 		}
 	}
-	
+
 	double tempSpeed;
 	int tempHour = 0;
 	int tempMin = 0;
-	for (auto &it : tempAircraft) 
+	for (auto& it : tempAircraft)
 	{
 		if (strcmp(it.getMake(), F.getAircraftType()) == 0) {
 			tempSpeed = it.getCruiseSpeed();
@@ -209,7 +209,6 @@ double Flight::CurrentAlt(double elapsedMin, double ROC)
 	return elapsedMin / ROC;
 }
 
-
 void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 {
 	printf("Now arriving: %s Flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
@@ -228,7 +227,6 @@ void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 			printf("\t\from %s, %s\n", it.getName(), it.getState());
 		}
 	}
-
 }
 
 void Flight::setFlightNumber(int param)
@@ -310,7 +308,6 @@ int Flight::getStartHr()
 {
 	return this->StartHr;
 }
-
 
 void Flight::setArrMin(int param)
 {

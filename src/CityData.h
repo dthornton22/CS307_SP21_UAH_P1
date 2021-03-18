@@ -33,7 +33,7 @@ public:
 	City(char* name, char* state, char* symbol, double lat, double lon);
 	~City();
 	void readData(char* infile);
-	double calcDistance(char *dep, char *arr);
+	double calcDistance(char* dep, char* arr);
 	double TripTime(double Distance, double CruiseSpeed);
 	double DistFromStart(double Distance, double TripTime, double Elapsed);
 	double DistToDst(double DistFromStart, double calcDistance);

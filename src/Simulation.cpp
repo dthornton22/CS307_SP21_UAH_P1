@@ -139,7 +139,7 @@ void Simulation::runSimulation(double clocktime)
 				printf("================================================================\n");
 			}
 
-			for (auto &it : Flights)
+			for (auto& it : Flights)
 			{
 				if (CurrentHr == it.getArrHr() && CurrentMin == it.getArrMin())
 				{

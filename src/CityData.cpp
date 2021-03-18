@@ -47,7 +47,7 @@ vector<City> City::ReturnCityVector()
 	return this->CityList;
 }
 
-double City::calcDistance(char *depCity, char *arrCity)
+double City::calcDistance(char* depCity, char* arrCity)
 {
 	int arrIndex = 0;
 	int depIndex = 0;
@@ -68,7 +68,7 @@ double City::calcDistance(char *depCity, char *arrCity)
 
 	double  distance = distances[(depIndex * CityCount) + arrIndex];
 	return distance;
-	
+
 	return 0;
 }
 
