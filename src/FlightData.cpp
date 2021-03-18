@@ -104,7 +104,6 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 		tempHour++;
 	}
 	else {
-
 		tempMin = F.getDepartMin() + min;
 	}
 	if (tempHour <= 9 && tempMin <= 9) { printf(" %0d:%0d\n", tempHour, tempMin); }
@@ -179,7 +178,7 @@ void Flight::PrintDeparture(Aircraft A, City C, Flight F, int CurrentHr, int Cur
 		tempMin = (CurrentMin + min) - 60;
 		tempHour++;
 	}
-	else 
+	else
 	{
 		tempMin = CurrentMin + min;
 	}
@@ -188,7 +187,6 @@ void Flight::PrintDeparture(Aircraft A, City C, Flight F, int CurrentHr, int Cur
 	else if (tempHour >= 10 && tempMin <= 9) { printf("\tEstimated Time of Arrival: %d:0%d\n", tempHour, tempMin); }
 	else if (tempHour >= 10 && tempMin >= 10) { printf("\tEstimated Time of Arrival: %d:%d\n", tempHour, tempMin); }
 }
-
 
 void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 {
