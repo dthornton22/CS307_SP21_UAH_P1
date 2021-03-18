@@ -29,15 +29,13 @@ void City::readData(char* infile)
 {
 	CityDataParser* ParseCity = new CityDataParser();
 	ParseCity->InitCityData(infile);
-	int CityCount = ParseCity->getCityCount();
+	CityCount = ParseCity->getCityCount();
 	for (int i = 0; i < CityCount; i++)	// iterate through all cities collecting data
 	{
 		ParseCity->getCityData(name, state, sym, &latitude, &longitude);
 		City NewCity(name, state, sym, latitude, longitude);
 		CityList.push_back(NewCity);
 	}
-	double* distances;
-	char** symbols;
 	ParseCity->getCitySymbolsArray(&symbols);				// Get the city Symbols
 	ParseCity->getDistTable(&distances);					// Get the distance table
 }
@@ -47,9 +45,44 @@ vector<City> City::ReturnCityVector()
 	return this->CityList;
 }
 
-double City::calcDistance(char depCity, char arrCity)
+double City::calcDistance(char *depCity, char *arrCity)
 {
+	int arrIndex = 0;
+	int depIndex = 0;
+
+	while (symbols[arrIndex] != NULL) {
+		if (strcmp(symbols[arrIndex], arrCity) == 0) {
+			break;
+		}
+		arrIndex++;
+	}
+
+	while (symbols[depIndex] != NULL) {
+		if (strcmp(symbols[depIndex], depCity) == 0) {
+			break;
+		}
+		depIndex++;
+	}
+
+	double  distance = distances[(depIndex * CityCount) + arrIndex];
+	return distance;
+	
 	return 0;
+}
+
+double City::TripTime(double Distance, double CruiseSpeed)
+{
+	return (Distance / CruiseSpeed);
+}
+
+double City::DistFromStart(double Distance, double TripTime, double Elapsed)
+{
+	return (Elapsed / TripTime) * Distance;
+}
+
+double City::DistToDst(double DistFromStart, double calcDistance)
+{
+	return (calcDistance - DistFromStart);
 }
 
 void City::setSymbol(char param)

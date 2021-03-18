@@ -24,13 +24,19 @@ private:
 	double latitude{ 0 };
 	double longitude{ 0 };
 	vector<City> CityList;
+	double* distances;
+	char** symbols;
+	int CityCount;
 
 public:
 	City();
 	City(char* name, char* state, char* symbol, double lat, double lon);
 	~City();
 	void readData(char* infile);
-	double calcDistance(char dep, char arr);
+	double calcDistance(char *dep, char *arr);
+	double TripTime(double Distance, double CruiseSpeed);
+	double DistFromStart(double Distance, double TripTime, double Elapsed);
+	double DistToDst(double DistFromStart, double calcDistance);
 
 	// Set functions
 	void setName(char param);

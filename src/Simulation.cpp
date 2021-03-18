@@ -83,7 +83,8 @@ void Simulation::runSimulation(double clocktime)
 	thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
 	outputTime = thisTime + 1.0 / clocktime; // Set next 1 second interval time (we could add, e.g., .5 to delay just a half second)
 	vector<Flight> InAir;
-	while (1) // Start an infinite loop
+	bool finished = false;
+	while (!finished) // Start an infinite loop
 	{
 		_ftime_s(&tStruct); // Get the current time
 		thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
@@ -96,7 +97,6 @@ void Simulation::runSimulation(double clocktime)
 			vector<Flight> Flights = testFlight->ReturnFlightVector();
 			vector<Aircraft> Airplanes = testAircraft->ReturnAircraftList();
 			vector<City> Cities = testCity->ReturnCityVector();
-			City Temp;
 			// Increment time.
 			if (CurrentMin >= 60)		// Check for minute overflow
 			{
@@ -116,8 +116,8 @@ void Simulation::runSimulation(double clocktime)
 				int tempMin = it.getDepartMin();
 				if (CurrentHr == tempHr && CurrentMin == tempMin)	// Find the time
 				{
-					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-					testFlight->PrintDeparture(*testCity, it, CurrentMin, CurrentHr);
+					printf("\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+					testFlight->PrintDeparture(*testAircraft, *testCity, it, CurrentMin, CurrentHr);
 					PrintCurrentTime();
 					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 					Flight NewInAir(it.getAirline(), it.getAircraftType(), it.getFlightNumber(), it.getDepartCity(), it.getDepartHour(), it.getDepartMin(), it.getArriveCity());
@@ -128,7 +128,7 @@ void Simulation::runSimulation(double clocktime)
 			// Output all current flights.
 			if ((Counter % 5) == 0)
 			{
-				printf("================================================================\n");
+				printf("\n\n================================================================\n");
 				printf("|  Flight Simulation - Status reports on all flights enroute.  |\n");
 				printf("================================================================\n");
 				for (auto& all : InAir)
@@ -139,15 +139,20 @@ void Simulation::runSimulation(double clocktime)
 				printf("================================================================\n");
 			}
 
-			// Output arriving flights.
-			// Need to remove flights from "in flight" list once they arrive
-			// Need to write get functions for the arrival times
-			if (CurrentHr == testFlight->getStartHr() && CurrentMin == testFlight->getStartMin())
+			for (auto &it : Flights)
 			{
-				printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-				testFlight->PrintArrival(Temp, *testFlight, CurrentMin, CurrentHr);
-				PrintCurrentTime();
-				printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+				if (CurrentHr == it.getArrHr() && CurrentMin == it.getArrMin())
+				{
+					printf("\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+					testFlight->PrintArrival(*testCity, *testFlight, CurrentMin, CurrentHr);
+					PrintCurrentTime();
+					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+					InAir.pop_back();
+					if (InAir.empty())
+					{
+						finished = true;
+					}
+				}
 			}
 		}
 	}
