@@ -37,16 +37,12 @@ public:
 	double TripTime(double Distance, double CruiseSpeed);
 	double DistFromStart(double Distance, double TripTime, double Elapsed);
 	double DistToDst(double DistFromStart, double calcDistance);
-
-	// Set functions
 	void setName(char param);
 	void setState(char param);
 	void setSymbol(char param);
 	void setLatitude(double param);
 	void setLongitude(double param);
 	vector<City> ReturnCityVector();
-
-	// Get functions
 	char* getName();
 	char* getState();
 	char* getSymbol();

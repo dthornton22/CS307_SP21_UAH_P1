@@ -39,7 +39,7 @@ void Aircraft::readData(char* infile)
 	}
 }
 
-vector<Aircraft> Aircraft::ReturnAircraftList()
+vector<Aircraft> Aircraft::returnAircraftList()
 {
 	return this->AircraftList;
 }

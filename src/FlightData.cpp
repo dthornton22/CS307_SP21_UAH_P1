@@ -40,7 +40,7 @@ void Flight::readData(char* infile)
 		Flight* NewFlight = new Flight(airline, aircraftType, flightNumber, departCity, departTimeHr, departTimeMin, arriveCity, arrMin, arrHr);
 		FlightList.push_back(*NewFlight);
 	}
-	ParseFlight->getStartTime(&StartHr, &StartMin);
+	ParseFlight->getStartTime(&startHr, &startMin);
 }
 
 vector<Flight> Flight::ReturnFlightVector()
@@ -48,11 +48,11 @@ vector<Flight> Flight::ReturnFlightVector()
 	return this->FlightList;
 }
 
-void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin)
+void Flight::printAllData(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin)
 {
-	vector<Aircraft> AircraftData = A.ReturnAircraftList();								// Vector of Aircraft data
-	vector<City> CityData = C.ReturnCityVector();										// Vector of city data
-	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());			// Distance
+	vector<Aircraft> AircraftData = A.returnAircraftList();
+	vector<City> CityData = C.ReturnCityVector();
+	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());
 	//double tempElapsedTimeHr = CurrentHr - F.getDepartHour();
 	//double tempElapsedTimeMin = CurrentMin - F.getDepartMin();
 	double tempElapsedTime, tempCurrentLon, tempCurrentLat, tempSpeed, tempTripTime;
@@ -69,7 +69,6 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 		}
 	}
 
-	// Arrives at...
 	for (auto& it : CityData)
 	{
 		if (strcmp(it.getSymbol(), F.getArriveCity()) == 0)
@@ -78,7 +77,6 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 		}
 	}
 
-	// Time of flight calculation
 	for (auto& it : AircraftData)
 	{
 		if (strcmp(F.getAircraftType(), it.getMake()) == 0)
@@ -128,14 +126,14 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 	}
 }
 
-void Flight::PrintDeparture(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin)
+void Flight::printDeparture(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin)
 {
 	printf("now departing: %s flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
 	vector<City> tempCity = C.ReturnCityVector();
-	vector<Aircraft> tempAircraft = A.ReturnAircraftList();
+	vector<Aircraft> tempAircraft = A.returnAircraftList();
 	for (auto& it : tempCity)
 	{
-		if (strcmp(it.getSymbol(), F.getDepartCity()) == 0)	// if the symbol is equal to the departure city symbol
+		if (strcmp(it.getSymbol(), F.getDepartCity()) == 0)
 		{
 			printf("\t\tfrom %s, %s\n", it.getName(), it.getState());
 		}
@@ -148,12 +146,10 @@ void Flight::PrintDeparture(Aircraft A, City C, Flight F, int CurrentHr, int Cur
 		}
 	}
 
-	// *********** CALC ETA ************ //
-	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());			// Distance
+	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());
 	double tempSpeed;
 	int tempHour = 0;
 	int tempMin = 0;
-	// Time of flight calculation
 	for (auto& it : tempAircraft)
 	{
 		if (strcmp(F.getAircraftType(), it.getMake()) == 0)
@@ -187,13 +183,13 @@ void Flight::PrintDeparture(Aircraft A, City C, Flight F, int CurrentHr, int Cur
 	else if (tempHour >= 10 && tempMin >= 10) { printf("\tEstimated Time of Arrival: %d:%d\n", tempHour, tempMin); }
 }
 
-void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
+void Flight::printArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 {
 	printf("Now arriving: %s Flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
 	vector<City> temp = C.ReturnCityVector();
 	for (auto& it : temp)
 	{
-		if (strcmp(it.getSymbol(), F.getArriveCity()) == 0)	// if the symbol is equal to the departure city symbol
+		if (strcmp(it.getSymbol(), F.getArriveCity()) == 0)
 		{
 			printf("\t\tAt %s, %s\n", it.getName(), it.getState());
 		}
@@ -207,14 +203,13 @@ void Flight::PrintArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 	}
 }
 
-int Flight::CalcETAMin(Flight F, Aircraft A, City C, int CurrentHr, int CurrentMin)
+int Flight::calcETAMin(Flight F, Aircraft A, City C, int CurrentHr, int CurrentMin)
 {
-	vector<Aircraft> tempAircraft = A.ReturnAircraftList();
-	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());			// Distance
+	vector<Aircraft> tempAircraft = A.returnAircraftList();
+	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());
 	double tempSpeed;
 	int tempHour = 0;
 	int tempMin = 0;
-	// Time of flight calculation
 	for (auto& it : tempAircraft)
 	{
 		if (strcmp(F.getAircraftType(), it.getMake()) == 0)
@@ -245,14 +240,13 @@ int Flight::CalcETAMin(Flight F, Aircraft A, City C, int CurrentHr, int CurrentM
 	return tempMin;
 }
 
-int Flight::CalcETAHr(Flight F, Aircraft A, City C, int CurrentHr, int CurrentMin)
+int Flight::calcETAHr(Flight F, Aircraft A, City C, int CurrentHr, int CurrentMin)
 {
-	vector<Aircraft> tempAircraft = A.ReturnAircraftList();
-	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());			// Distance
+	vector<Aircraft> tempAircraft = A.returnAircraftList();
+	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());
 	double tempSpeed;
 	int tempHour = 0;
 	int tempMin = 0;
-	// Time of flight calculation
 	for (auto& it : tempAircraft)
 	{
 		if (strcmp(F.getAircraftType(), it.getMake()) == 0)
@@ -283,17 +277,17 @@ int Flight::CalcETAHr(Flight F, Aircraft A, City C, int CurrentHr, int CurrentMi
 	return tempHour;
 }
 
-double Flight::CurrentLat(double lat1, double lat2, double elapsedTime, double TripTime)
+double Flight::curLat(double lat1, double lat2, double elapsedTime, double TripTime)
 {
 	return lat1 + (lat2 - lat1) * (elapsedTime / TripTime);
 }
 
-double Flight::CurrentLon(double lon1, double lon2, double elapsedTime, double TripTime)
+double Flight::curLon(double lon1, double lon2, double elapsedTime, double TripTime)
 {
 	return lon1 + (lon2 - lon1) * (elapsedTime / TripTime);
 }
 
-double Flight::CurrentAlt(double elapsedMin, double ROC)
+double Flight::curAlt(double elapsedMin, double ROC)
 {
 	return elapsedMin / ROC;
 }
@@ -335,12 +329,12 @@ char* Flight::getArriveCity()
 
 int Flight::getStartMin()
 {
-	return this->StartMin;
+	return this->startMin;
 }
 
 int Flight::getStartHr()
 {
-	return this->StartHr;
+	return this->startHr;
 }
 
 void Flight::setArrMin(int param)

@@ -44,8 +44,8 @@ void Simulation::initializeSimulation()
 		cout << "Opening City data file " << cityFile << "..." << endl;
 		cout << "Opening Airline/Flight data file " << flightFile << "..." << endl;
 
-		string temp1 = "../" + cityFile;
-		string temp2 = "../" + flightFile;
+		string temp1 = "../" + cityFile; // since solution is not in same directory
+		string temp2 = "../" + flightFile; // go up a folder to grab these files
 		strcpy(myCityFile, temp1.c_str());
 		strcpy(myFlightFile, temp2.c_str());
 
@@ -59,95 +59,88 @@ void Simulation::initializeSimulation()
 		cout << "Exiting program now..." << endl;
 		exit(2);
 	}
-
-	// Start with default values
-	testCity = new City();
-	testFlight = new Flight();
-	testAircraft = new Aircraft();
-
-	// Then read in the data
-	testCity->readData(myCityFile);
-	testFlight->readData(myFlightFile);
-	testAircraft->readData(myFlightFile);
-
-	// Get start time
-	CurrentHr = testFlight->getStartHr();
-	CurrentMin = testFlight->getStartMin();
-	PrintStartTime();
+	myCity = new City();
+	myFlight = new Flight();
+	myAircraft = new Aircraft();
+	myCity->readData(myCityFile);
+	myFlight->readData(myFlightFile);
+	myAircraft->readData(myFlightFile);
+	curHr = myFlight->getStartHr();
+	curMin = myFlight->getStartMin();
+	printStartTime();
 }
 
 void Simulation::runSimulation(double clocktime)
 {
-	_ftime_s(&tStruct);	// Get start time
-	thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
-	outputTime = thisTime + 1.0 / clocktime; // Set next 1 second interval time (we could add, e.g., .5 to delay just a half second)
+	_ftime_s(&tStruct);
+	thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0);
+	outputTime = thisTime + 1.0 / clocktime;
 	vector<Flight> InAir;
 	bool finished = false;
-	while (!finished) // Start an infinite loop
+	while (!finished)
 	{
-		_ftime_s(&tStruct); // Get the current time
-		thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0); // Convert to double
-		// Check for 1 second interval to print status to screen
+		_ftime_s(&tStruct);
+		thisTime = tStruct.time + (((double)(tStruct.millitm)) / 1000.0);
 		if (thisTime >= outputTime)
 		{
-			CurrentMin += 1;
-			Counter += 1;
+			curMin += 1;
+			counter += 1;
 
-			vector<Flight> Flights = testFlight->ReturnFlightVector();
-			vector<Aircraft> Airplanes = testAircraft->ReturnAircraftList();
-			vector<City> Cities = testCity->ReturnCityVector();
-			// Increment time.
-			if (CurrentMin >= 60)		// Check for minute overflow
+			vector<Flight> Flights = myFlight->ReturnFlightVector();
+			vector<Aircraft> Airplanes = myAircraft->returnAircraftList();
+			vector<City> Cities = myCity->ReturnCityVector();
+			// Increment time
+			if (curMin >= 60) // minute overflow
 			{
-				CurrentHr += 1;
-				if (CurrentHr == 13)	// Check for hour overflow
+				curHr += 1;
+				if (curHr == 13) // hour overflow
 				{
-					CurrentHr = 1;
+					curHr = 1;
 				}
-				CurrentMin = 0;
+				curMin = 0;
 			}
-			outputTime += 1.0 / clocktime; // Set time for next 1 second interval
+			outputTime += 1.0 / clocktime;
 
-			// Output a new flight.
+			// Output a new flight
 			for (auto& it : Flights)
 			{
 				int tempHr = it.getDepartHour();
 				int tempMin = it.getDepartMin();
-				if (CurrentHr == tempHr && CurrentMin == tempMin)	// Find the time
+				if (curHr == tempHr && curMin == tempMin)
 				{
 					printf("\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-					testFlight->PrintDeparture(*testAircraft, *testCity, it, CurrentHr, CurrentMin);
-					PrintCurrentTime();
+					myFlight->printDeparture(*myAircraft, *myCity, it, curHr, curMin);
+					printCurrentTime();
 					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 					Flight NewInAir(it.getAirline(), it.getAircraftType(), it.getFlightNumber(), it.getDepartCity(), it.getDepartHour(), it.getDepartMin(), it.getArriveCity(), it.getArrMin(), it.getArrHr());
-					NewInAir.setArrHr(NewInAir.CalcETAHr(it, *testAircraft, *testCity, CurrentHr, CurrentMin));
-					NewInAir.setArrMin(NewInAir.CalcETAMin(it, *testAircraft, *testCity, CurrentHr, CurrentMin));
+					NewInAir.setArrHr(NewInAir.calcETAHr(it, *myAircraft, *myCity, curHr, curMin));
+					NewInAir.setArrMin(NewInAir.calcETAMin(it, *myAircraft, *myCity, curHr, curMin));
 					InAir.push_back(NewInAir);
 				}
 			}
 
-			// Output all current flights.
-			if ((Counter % 5) == 0)
+			// Output all current flights every 5 minutes
+			if ((counter % 5) == 0)
 			{
 				printf("\n\n================================================================\n");
 				printf("|  Flight Simulation - Status reports on all flights enroute.  |\n");
 				printf("================================================================\n");
 				for (auto& all : InAir)
 				{
-					testFlight->PrintAllData(*testAircraft, *testCity, all, CurrentHr, CurrentMin);
+					myFlight->printAllData(*myAircraft, *myCity, all, curHr, curMin);
 				}
-				PrintCurrentTime();
+				printCurrentTime();
 				printf("================================================================\n");
 			}
 
 			for (auto& it : InAir)
 
 			{
-				if (CurrentHr == it.getArrHr() && CurrentMin == it.getArrMin())
+				if (curHr == it.getArrHr() && curMin == it.getArrMin())
 				{
 					printf("\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
-					testFlight->PrintArrival(*testCity, it, CurrentMin, CurrentHr);
-					PrintCurrentTime();
+					myFlight->printArrival(*myCity, it, curMin, curHr);
+					printCurrentTime();
 					printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 					InAir.erase(InAir.begin());
 					if (InAir.empty())
@@ -160,20 +153,20 @@ void Simulation::runSimulation(double clocktime)
 	}
 }
 
-void Simulation::PrintCurrentTime()
+void Simulation::printCurrentTime()
 {
-	if (CurrentHr <= 9 && CurrentMin <= 9) { printf("Current clock time: %0d:0%d\n", CurrentHr, CurrentMin); }// ex 07:00
-	else if (CurrentHr <= 9 && CurrentMin >= 10) { printf("Current clock time: %0d:%d\n", CurrentHr, CurrentMin); }// ex 07:10
-	else if (CurrentHr >= 10 && CurrentMin <= 9) { printf("Current clock time: %d:0%d\n", CurrentHr, CurrentMin); }// ex 10:00
-	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("Current clock time: %d:%d\n", CurrentHr, CurrentMin); }// ex 10:11
+	if (curHr <= 9 && curMin <= 9) { printf("Current clock time: %0d:0%d\n", curHr, curMin); }
+	else if (curHr <= 9 && curMin >= 10) { printf("Current clock time: %0d:%d\n", curHr, curMin); }
+	else if (curHr >= 10 && curMin <= 9) { printf("Current clock time: %d:0%d\n", curHr, curMin); }
+	else if (curHr >= 10 && curMin >= 10) { printf("Current clock time: %d:%d\n", curHr, curMin); }
 }
 
-void Simulation::PrintStartTime()
+void Simulation::printStartTime()
 {
-	if (CurrentHr <= 9 && CurrentMin <= 9) { printf("*** Starting simulation at 0%d:0%d ***\n", CurrentHr, CurrentMin); }// ex 07:00
-	else if (CurrentHr <= 9 && CurrentMin >= 10) { printf("*** Starting simulation at 0%d:%d ***\n", CurrentHr, CurrentMin); }// ex 07:10
-	else if (CurrentHr >= 10 && CurrentMin <= 9) { printf("*** Starting simulation at %d:0%d ***\n", CurrentHr, CurrentMin); }// ex 10:00
-	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("*** Starting simulation at %d:%d ***\n", CurrentHr, CurrentMin); }// ex 10:11
+	if (curHr <= 9 && curMin <= 9) { printf("*** Starting simulation at 0%d:0%d ***\n", curHr, curMin); }
+	else if (curHr <= 9 && curMin >= 10) { printf("*** Starting simulation at 0%d:%d ***\n", curHr, curMin); }
+	else if (curHr >= 10 && curMin <= 9) { printf("*** Starting simulation at %d:0%d ***\n", curHr, curMin); }
+	else if (curHr >= 10 && curMin >= 10) { printf("*** Starting simulation at %d:%d ***\n", curHr, curMin); }
 }
 
 int Simulation::getClockMult()

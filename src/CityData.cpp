@@ -38,8 +38,8 @@ void City::readData(char* infile)
 		City NewCity(name, state, sym, latitude, longitude);
 		CityList.push_back(NewCity);
 	}
-	ParseCity->getCitySymbolsArray(&symbols);				// Get the city Symbols
-	ParseCity->getDistTable(&distances);					// Get the distance table
+	ParseCity->getCitySymbolsArray(&symbols);
+	ParseCity->getDistTable(&distances);
 }
 
 vector<City> City::ReturnCityVector()

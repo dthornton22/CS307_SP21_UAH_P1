@@ -31,8 +31,6 @@ public:
 	Aircraft(char* make, char* desc, double roc, double wngs, double len, double cs, double ca);
 	~Aircraft();
 	void readData(char* infile);
-
-	// Get functions
 	char* getMake();
 	char* getModel();
 	double getCruiseSpeed();
@@ -40,7 +38,7 @@ public:
 	double getClimbSpeed();
 	double getWingspan();
 	double getFuselageLength();
-	vector<Aircraft> ReturnAircraftList();
+	vector<Aircraft> returnAircraftList();
 };
 
 #endif

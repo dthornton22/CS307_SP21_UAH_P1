@@ -23,9 +23,9 @@ class Simulation
 {
 private:
 	int clockMult{ 0 };
-	int Counter{ 0 };
-	int CurrentMin{ 0 };
-	int	CurrentHr{ 0 };
+	int counter{ 0 };
+	int curMin{ 0 };
+	int	curHr{ 0 };
 	string inputFile;
 	struct _timeb tStruct { 0 };
 	double thisTime{ 0 };
@@ -37,19 +37,14 @@ public:
 	double getFlightETA(double distance, char* mak, vector<Aircraft> aircraft);
 	void runSimulation(double clocktime);
 	void initializeSimulation();
-	void PrintCurrentTime();
-	void PrintStartTime();
-
-	City* testCity;
-	Flight* testFlight;
-	Aircraft* testAircraft;
-
-	// Set functions
+	void printCurrentTime();
+	void printStartTime();
 	void setInFile(string param);
-
-	// Get functions
 	int getClockMult();
 	string getInFile();
+	City* myCity;
+	Flight* myFlight;
+	Aircraft* myAircraft;
 };
 
 #endif
