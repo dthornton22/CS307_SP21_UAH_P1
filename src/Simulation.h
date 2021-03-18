@@ -1,7 +1,7 @@
 // ****************************************
-// Program Title: Project1
+// Program Title: Programming Assignment 1
 // Project File: Simulation.h
-// Name: Nolan Anderson
+// Name: David Thornton
 // Course: CS-307
 // Due Date: 03/17/2021
 // ****************************************
@@ -10,9 +10,9 @@
 #include "CityData.h"
 #include "FlightData.h"
 #include "AircraftData.h"
-#include <sys/types.h>	// needed for the _ftime_s() function
-#include <sys/timeb.h>	// contains definition of _timeb struct
-#include <time.h>		// needed for other time functions and structures
+#include <sys/types.h>
+#include <sys/timeb.h>
+#include <time.h>
 #include <string>
 #ifndef SIMULATION_H
 #define SIMULATION_H
@@ -45,7 +45,6 @@ public:
 	Aircraft* testAircraft;
 
 	// Set functions
-	void setClockMult(int param);
 	void setInFile(string param);
 
 	// Get functions

@@ -1,13 +1,12 @@
 // ****************************************
-// Program Title: Project1
+// Program Title: Programming Assignment 1
 // Project File: Simulation.cpp
-// Name: Nolan Anderson
+// Name: David Thornton
 // Course: CS-307
 // Due Date: 03/17/2021
 // ****************************************
-#pragma warning(disable : 4996)
-
 #include "Simulation.h"
+#pragma warning(disable : 4996)
 
 Simulation::Simulation()
 {
@@ -175,11 +174,6 @@ void Simulation::PrintStartTime()
 	else if (CurrentHr <= 9 && CurrentMin >= 10) { printf("*** Starting simulation at 0%d:%d ***\n", CurrentHr, CurrentMin); }// ex 07:10
 	else if (CurrentHr >= 10 && CurrentMin <= 9) { printf("*** Starting simulation at %d:0%d ***\n", CurrentHr, CurrentMin); }// ex 10:00
 	else if (CurrentHr >= 10 && CurrentMin >= 10) { printf("*** Starting simulation at %d:%d ***\n", CurrentHr, CurrentMin); }// ex 10:11
-}
-
-void Simulation::setClockMult(int param)
-{
-	this->clockMult = param;
 }
 
 int Simulation::getClockMult()

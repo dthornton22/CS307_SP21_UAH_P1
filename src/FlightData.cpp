@@ -1,7 +1,7 @@
 // ****************************************
-// Program Title: Project1
+// Program Title: Programming Assignment 1
 // Project File: FlightData.cpp
-// Name: Nolan Anderson
+// Name: David Thornton
 // Course: CS-307
 // Due Date: 03/17/2021
 // ****************************************
@@ -53,11 +53,10 @@ void Flight::PrintAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 	vector<Aircraft> AircraftData = A.ReturnAircraftList();								// Vector of Aircraft data
 	vector<City> CityData = C.ReturnCityVector();										// Vector of city data
 	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());			// Distance
-	double tempTripTime;
-	double tempElapsedTimeHr = CurrentHr - F.getDepartHour();
-	double tempElapsedTimeMin = CurrentMin - F.getDepartMin();
-	double tempElapsedTime;	double tempCurrentLon;	double tempCurrentLat;	double tempSpeed;
-	int tempHour;	int tempMin;
+	//double tempElapsedTimeHr = CurrentHr - F.getDepartHour();
+	//double tempElapsedTimeMin = CurrentMin - F.getDepartMin();
+	double tempElapsedTime, tempCurrentLon, tempCurrentLat, tempSpeed, tempTripTime;
+	int tempHour, tempMin;
 	printf("%s Flight %d - %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
 
 	// Time of flight calculation
@@ -297,41 +296,6 @@ double Flight::CurrentLon(double lon1, double lon2, double elapsedTime, double T
 double Flight::CurrentAlt(double elapsedMin, double ROC)
 {
 	return elapsedMin / ROC;
-}
-
-void Flight::setFlightNumber(int param)
-{
-	this->flightNumber = param;
-}
-
-void Flight::setDepartTimeMin(int param)
-{
-	this->departTimeMin = param;
-}
-
-void Flight::setDepartTimeHr(int param)
-{
-	this->departTimeHr = param;
-}
-
-void Flight::setAirline(char param)
-{
-	*this->airline = param;
-}
-
-void Flight::setAircraftType(char param)
-{
-	*this->aircraftType = param;
-}
-
-void Flight::setDepartCity(char param)
-{
-	*this->departCity = param;
-}
-
-void Flight::setArriveCity(char param)
-{
-	*this->arriveCity = param;
 }
 
 int Flight::getFlightNumber()

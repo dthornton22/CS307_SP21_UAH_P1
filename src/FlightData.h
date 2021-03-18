@@ -1,7 +1,7 @@
 // ****************************************
-// Program Title: Project1
+// Program Title: Programming Assignment 1
 // Project File: FlightData.h
-// Name: Nolan Anderson
+// Name: David Thornton
 // Course: CS-307
 // Due Date: 03/17/2021
 // ****************************************
@@ -10,13 +10,13 @@
 #include "CityData.h"
 #include "AircraftData.h"
 #include <math.h>
-#include <cstdlib>
-#include <fstream>
 #include <vector>
 #include <string>
+#include <cstdlib>
+#include <fstream>
+#include <stdio.h>
 #include <iostream>
 #include <string.h>
-#include <stdio.h>
 #include <stdlib.h>
 #ifndef FLIGHTDATA_H
 #define FLIGHTDATA_H
@@ -53,13 +53,6 @@ public:
 	double CurrentAlt(double elapsedMin, double ROC);
 
 	// Set functions
-	void setFlightNumber(int param);
-	void setDepartTimeMin(int param);
-	void setDepartTimeHr(int param);
-	void setAirline(char param);
-	void setAircraftType(char param);
-	void setDepartCity(char param);
-	void setArriveCity(char param);
 	void setArrMin(int param);
 	void setArrHr(int param);
 	int CalcETAMin(Flight F, Aircraft A, City C, int CurrentHr, int CurrentMin);

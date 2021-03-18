@@ -1,7 +1,7 @@
 // ****************************************
-// Program Title: Project1
+// Program Title: Programming Assignment 1
 // Project File: CityData.h
-// Name: Nolan Anderson
+// Name: David Thornton
 // Course: CS-307
 // Due Date: 03/17/2021
 // ****************************************
@@ -24,9 +24,9 @@ private:
 	double latitude{ 0 };
 	double longitude{ 0 };
 	vector<City> CityList;
-	double* distances;
-	char** symbols;
-	int CityCount;
+	double* distances{ 0 };
+	char** symbols{};
+	int CityCount{ 0 };
 
 public:
 	City();

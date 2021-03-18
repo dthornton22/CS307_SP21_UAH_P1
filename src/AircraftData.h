@@ -1,12 +1,11 @@
 // ****************************************
-// Program Title: Project1
+// Program Title: Programming Assignment 1
 // Project File: AircraftData.h
-// Name: Nolan Anderson
+// Name: David Thornton
 // Course: CS-307
 // Due Date: 03/17/2021
 // ****************************************
 #include "FlightDataParser.h"
-#include "CityDataParser.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -32,15 +31,6 @@ public:
 	Aircraft(char* make, char* desc, double roc, double wngs, double len, double cs, double ca);
 	~Aircraft();
 	void readData(char* infile);
-
-	// Set functions
-	void setMake(char param);
-	void setModel(char param);
-	void setCruiseSpeed(double param);
-	void setCruiseAltitude(double param);
-	void setClimbSpeed(double param);
-	void setWingspan(double param);
-	void setFuselageLength(double param);
 
 	// Get functions
 	char* getMake();

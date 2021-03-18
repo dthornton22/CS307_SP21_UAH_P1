@@ -1,11 +1,12 @@
 // ****************************************
-// Program Title: Project1
+// Program Title: Programming Assignment 1
 // Project File: AircraftData.cpp
-// Name: Nolan Anderson
+// Name: David Thornton
 // Course: CS-307
 // Due Date: 03/17/2021
 // ****************************************
 #include "AircraftData.h"
+
 Aircraft::Aircraft()
 {
 }
@@ -41,41 +42,6 @@ void Aircraft::readData(char* infile)
 vector<Aircraft> Aircraft::ReturnAircraftList()
 {
 	return this->AircraftList;
-}
-
-void Aircraft::setMake(char param)
-{
-	*this->make = param;
-}
-
-void Aircraft::setModel(char param)
-{
-	*this->model = param;
-}
-
-void Aircraft::setCruiseSpeed(double param)
-{
-	this->cruiseAltitude = param;
-}
-
-void Aircraft::setCruiseAltitude(double param)
-{
-	this->cruiseAltitude = param;
-}
-
-void Aircraft::setClimbSpeed(double param)
-{
-	this->climbSpeed = param;
-}
-
-void Aircraft::setWingspan(double param)
-{
-	this->wingspan = param;
-}
-
-void Aircraft::setFuselageLength(double param)
-{
-	this->fuselageLength = param;
 }
 
 char* Aircraft::getMake()
