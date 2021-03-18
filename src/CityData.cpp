@@ -42,7 +42,7 @@ void City::readData(char* infile)
 	ParseCity->getDistTable(&distances);
 }
 
-vector<City> City::ReturnCityVector()
+vector<City> City::returnCityVector()
 {
 	return this->CityList;
 }

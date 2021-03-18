@@ -42,7 +42,7 @@ public:
 	void setSymbol(char param);
 	void setLatitude(double param);
 	void setLongitude(double param);
-	vector<City> ReturnCityVector();
+	vector<City> returnCityVector();
 	char* getName();
 	char* getState();
 	char* getSymbol();

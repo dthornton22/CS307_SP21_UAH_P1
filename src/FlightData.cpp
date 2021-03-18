@@ -51,7 +51,7 @@ vector<Flight> Flight::ReturnFlightVector()
 void Flight::printAllData(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin)
 {
 	vector<Aircraft> AircraftData = A.returnAircraftList();
-	vector<City> CityData = C.ReturnCityVector();
+	vector<City> CityData = C.returnCityVector();
 	double tempDistance = C.calcDistance(F.getDepartCity(), F.getArriveCity());
 	//double tempElapsedTimeHr = CurrentHr - F.getDepartHour();
 	//double tempElapsedTimeMin = CurrentMin - F.getDepartMin();
@@ -129,7 +129,7 @@ void Flight::printAllData(Aircraft A, City C, Flight F, int CurrentHr, int Curre
 void Flight::printDeparture(Aircraft A, City C, Flight F, int CurrentHr, int CurrentMin)
 {
 	printf("now departing: %s flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
-	vector<City> tempCity = C.ReturnCityVector();
+	vector<City> tempCity = C.returnCityVector();
 	vector<Aircraft> tempAircraft = A.returnAircraftList();
 	for (auto& it : tempCity)
 	{
@@ -186,7 +186,7 @@ void Flight::printDeparture(Aircraft A, City C, Flight F, int CurrentHr, int Cur
 void Flight::printArrival(City C, Flight F, int CurrentHr, int CurrentMin)
 {
 	printf("Now arriving: %s Flight %d, %s\n", F.getAirline(), F.getFlightNumber(), F.getAircraftType());
-	vector<City> temp = C.ReturnCityVector();
+	vector<City> temp = C.returnCityVector();
 	for (auto& it : temp)
 	{
 		if (strcmp(it.getSymbol(), F.getArriveCity()) == 0)

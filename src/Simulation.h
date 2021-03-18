@@ -5,15 +5,15 @@
 // Course: CS-307
 // Due Date: 03/17/2021
 // ****************************************
-#include "FlightDataParser.h"
-#include "CityDataParser.h"
 #include "CityData.h"
 #include "FlightData.h"
 #include "AircraftData.h"
-#include <sys/types.h>
-#include <sys/timeb.h>
+#include "CityDataParser.h"
+#include "FlightDataParser.h"
 #include <time.h>
 #include <string>
+#include <sys/types.h>
+#include <sys/timeb.h>
 #ifndef SIMULATION_H
 #define SIMULATION_H
 
@@ -36,10 +36,10 @@ public:
 	~Simulation();
 	double getFlightETA(double distance, char* mak, vector<Aircraft> aircraft);
 	void runSimulation(double clocktime);
+	void setInFile(string param);
 	void initializeSimulation();
 	void printCurrentTime();
 	void printStartTime();
-	void setInFile(string param);
 	int getClockMult();
 	string getInFile();
 	City* myCity;

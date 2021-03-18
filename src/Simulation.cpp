@@ -43,7 +43,6 @@ void Simulation::initializeSimulation()
 		getline(userInFile, flightFile);
 		cout << "Opening City data file " << cityFile << "..." << endl;
 		cout << "Opening Airline/Flight data file " << flightFile << "..." << endl;
-
 		string temp1 = "../" + cityFile; // since solution is not in same directory
 		string temp2 = "../" + flightFile; // go up a folder to grab these files
 		strcpy(myCityFile, temp1.c_str());
@@ -88,7 +87,7 @@ void Simulation::runSimulation(double clocktime)
 
 			vector<Flight> Flights = myFlight->ReturnFlightVector();
 			vector<Aircraft> Airplanes = myAircraft->returnAircraftList();
-			vector<City> Cities = myCity->ReturnCityVector();
+			vector<City> Cities = myCity->returnCityVector();
 			// Increment time
 			if (curMin >= 60) // minute overflow
 			{
